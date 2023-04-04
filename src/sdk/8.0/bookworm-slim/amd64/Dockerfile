@@ -1,5 +1,5 @@
-ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:8.0.0-preview.3-bookworm-slim-amd64
+ARG BASE_IMAGE
+FROM $BASE_IMAGE
 
 ENV \
     # Do not generate certificate

@@ -1,21 +1,26 @@
-ARG REPO=mcr.microsoft.com/dotnet/runtime
+ARG BASE_IMAGE
 
 # Installer image
 FROM amd64/buildpack-deps:bookworm-curl AS installer
 
-# Retrieve ASP.NET Core
+# Retrieve ASP.NET composite runtime
 RUN aspnetcore_version=8.0.0-preview.3.23177.8 \
-    && curl -fSL --output aspnetcore.tar.gz https://dotnetbuilds.azureedge.net/public/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-$aspnetcore_version-linux-x64.tar.gz \
-    && aspnetcore_sha512='f990c63e651d71ef615aa494dc555fdcf66411431d07b7ae9bef50f276e863198212471b90bdd86686426d5907d2426924d1a279262035bbf3ce64d8914e590f' \
-    && echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - \
-    && tar -oxzf aspnetcore.tar.gz ./shared/Microsoft.AspNetCore.App \
-    && rm aspnetcore.tar.gz
+    && curl -fSL --output dotnet.tar.gz https://dotnetbuilds.azureedge.net/public/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-composite-$aspnetcore_version-linux-x64.tar.gz \
+    && dotnet_sha512='35c71b03a14be3782bff91add140259d7205708d01cd69dd2b1a88819812b1998ebe18f76ef669f18a19349299bec23655ffa5705ece9167b94a8c65f526a08d' \
+    && echo "$dotnet_sha512  dotnet.tar.gz" | sha512sum -c - \
+    && mkdir -p /dotnet \
+    && tar -oxzf dotnet.tar.gz -C /dotnet \
+    && rm dotnet.tar.gz
 
 
-# ASP.NET Core image
-FROM $REPO:8.0.0-preview.3-bookworm-slim-amd64
+# ASP.NET composite runtime image
+FROM $BASE_IMAGE
 
+# .NET Runtime version
+ENV DOTNET_VERSION=8.0.0-preview.3.23174.8
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.0-preview.3.23177.8
 
-COPY --from=installer ["/shared/Microsoft.AspNetCore.App", "/usr/share/dotnet/shared/Microsoft.AspNetCore.App"]
+COPY --from=installer ["/dotnet", "/usr/share/dotnet"]
+
+RUN ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
