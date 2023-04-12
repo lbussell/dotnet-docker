@@ -6,6 +6,7 @@ FROM $SDK_IMAGE AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
+COPY aspnetapp/NuGet.config .
 COPY aspnetapp/*.csproj .
 RUN dotnet restore --use-current-runtime
 
