@@ -29,6 +29,5 @@ RUN curl -fSL --output dotnet.tar.gz https://dotnetbuilds.azureedge.net/public/S
     && mkdir -p /usr/share/dotnet \
     && tar -oxzf dotnet.tar.gz -C /usr/share/dotnet ./packs ./sdk ./sdk-manifests ./templates ./LICENSE.txt ./ThirdPartyNotices.txt \
     && rm dotnet.tar.gz \
-    && cp /usr/share/dotnet/shared/Microsoft.AspNetCore.App/$ASPNET_VERSION/Microsoft.Extensions.Logging.Abstractions.dll /usr/share/dotnet/sdk/$DOTNET_SDK_VERSION/Microsoft.Extensions.Logging.Abstractions.dll \
     # Trigger first run experience by running arbitrary cmd
     && dotnet help

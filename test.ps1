@@ -1,7 +1,6 @@
 param(
     [switch]$noCache = $false,
-    [switch]$buildSample = $false,
-    [switch]$runSample = $false
+    [switch]$buildSample = $false
 )
 
 set-psdebug -trace 1
@@ -46,8 +45,4 @@ if ($buildSample) {
         --build-arg RUNTIME_IMAGE=aspnet-composite `
         @extraArgs .
     pop-location
-}
-
-if ($runSample) {
-    docker run --rm -p 8080:8080 sample
 }
