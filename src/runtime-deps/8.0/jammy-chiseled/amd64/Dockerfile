@@ -1,7 +1,10 @@
 FROM amd64/golang:1.18 as chisel
 
-RUN git clone --depth 1 -b main https://github.com/canonical/chisel /opt/chisel
+RUN git clone --depth 1 -b main https://github.com/canonical/chisel /opt/chisel \
+    && git clone --depth 1 -b main https://github.com/canonical/rocks-toolbox /opt/rocks-toolbox
+
 WORKDIR /opt/chisel
+
 RUN go generate internal/deb/version.go \
     && go build ./cmd/chisel
 
@@ -9,7 +12,7 @@ RUN go generate internal/deb/version.go \
 FROM amd64/ubuntu:jammy as builder
 
 RUN apt-get update && \
-    apt-get install -y ca-certificates
+    apt-get install -y git ca-certificates
 
 RUN groupadd \
         --gid=64198 \
@@ -26,7 +29,11 @@ RUN groupadd \
     && cat /etc/group | grep $rootOrAppRegex > "/rootfs/etc/group"
 
 COPY --from=chisel /opt/chisel/chisel /usr/bin/
-RUN chisel cut --release "ubuntu-22.04" --root /rootfs \
+COPY --from=chisel /opt/rocks-toolbox/chisel-wrapper /usr/bin/
+
+ENV CHISEL_DPKG_STATUS_FILE=/rootfs/var/lib/dpkg/status
+
+RUN chisel-wrapper -- --release "ubuntu-22.04" --root /rootfs \
         base-files_base \
         base-files_release-info \
         ca-certificates_data \
