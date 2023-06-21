@@ -12,7 +12,7 @@ RUN go generate internal/deb/version.go \
 FROM amd64/ubuntu:jammy as builder
 
 RUN apt-get update && \
-    apt-get install -y git ca-certificates
+    apt-get install -y file ca-certificates
 
 RUN groupadd \
         --gid=64198 \
@@ -28,20 +28,19 @@ RUN groupadd \
     && cat /etc/passwd | grep $rootOrAppRegex > "/rootfs/etc/passwd" \
     && cat /etc/group | grep $rootOrAppRegex > "/rootfs/etc/group"
 
-COPY --from=chisel /opt/chisel/chisel /usr/bin/
-COPY --from=chisel /opt/rocks-toolbox/chisel-wrapper /usr/bin/
+COPY --from=chisel /opt/chisel/chisel /opt/rocks-toolbox/chisel-wrapper /usr/bin/
 
-ENV CHISEL_DPKG_STATUS_FILE=/rootfs/var/lib/dpkg/status
-
-RUN chisel-wrapper -- --release "ubuntu-22.04" --root /rootfs \
-        base-files_base \
-        base-files_release-info \
-        ca-certificates_data \
-        libc6_libs \
-        libgcc-s1_libs \
-        libssl3_libs \
-        libstdc++6_libs \
-        zlib1g_libs
+RUN mkdir -p /rootfs/var/lib/dpkg/ \
+    && chisel-wrapper --generate-dpkg-status /rootfs/var/lib/dpkg/status -- \
+        --release "ubuntu-22.04" --root /rootfs \
+            base-files_base \
+            base-files_release-info \
+            ca-certificates_data \
+            libc6_libs \
+            libgcc-s1_libs \
+            libssl3_libs \
+            libstdc++6_libs \
+            zlib1g_libs
 
 
 FROM scratch
