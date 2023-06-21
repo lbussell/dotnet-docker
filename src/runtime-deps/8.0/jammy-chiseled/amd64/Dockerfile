@@ -11,8 +11,10 @@ RUN go generate internal/deb/version.go \
 
 FROM amd64/ubuntu:jammy as builder
 
-RUN apt-get update && \
-    apt-get install -y file ca-certificates
+RUN apt-get update \
+    && apt-get install -y \
+        ca-certificates \
+        file
 
 RUN groupadd \
         --gid=64198 \
@@ -47,9 +49,6 @@ FROM scratch
 
 COPY --from=builder /rootfs /
 
-# Workaround for https://github.com/moby/moby/issues/38710
-COPY --from=builder --chown=64198:64198 /rootfs/home/app /home/app
-
 ENV \
     # UID of the non-root user 'app'
     APP_UID=64198 \
@@ -59,5 +58,8 @@ ENV \
     DOTNET_RUNNING_IN_CONTAINER=true \
     # Set the invariant mode since ICU package isn't included (see https://github.com/dotnet/announcements/issues/20)
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
+
+# Workaround for https://github.com/moby/moby/issues/38710
+COPY --from=builder --chown=$APP_UID:$APP_UID /rootfs/home/app /home/app
 
 USER $APP_UID
