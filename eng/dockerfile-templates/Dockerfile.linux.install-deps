@@ -1,6 +1,7 @@
 {{
     _ ARGS:
         isSdk (optional): Indicates whether the dependencies are installed for an sdk Dockerfile
+        is-aot (optional): Indicates
         staging-dir (optional): Location of the staging directory for distroless installation ^
 
     set dotnetVersion to join(slice(split(PRODUCT_VERSION, "."), 0, 2), ".") ^
@@ -8,51 +9,61 @@
     set isMariner to find(OS_VERSION, "cbl-mariner") >= 0 ^
     set isDistrolessMariner to defined(match(OS_VERSION, "^cbl-mariner\d+\.\d+-distroless$")) ^
     set dotnetDepsComment to "# .NET dependencies" ^
-    set pkgs to when(isAlpine,
-        when (dotnetVersion = "6.0" || dotnetVersion = "7.0",
-            [
-                "krb5-libs",
-                "libgcc",
-                "libintl",
-                cat("libssl", VARIABLES[cat("libssl|", OS_VERSION_BASE)]),
-                "libstdc++",
-                "zlib"
-            ],
-            [
-                "libgcc",
-                cat("libssl", VARIABLES[cat("libssl|", OS_VERSION_BASE)]),
-                "libstdc++",
-                "zlib"
-            ]
-        ),
-        when(isMariner,
-            when(isDistrolessMariner,
+    set pkgs to when (ARGS["is-aot"],
+        when(isAlpine,
+
+        )
+        [
+            "foo!",
+            "bar!"
+        ],
+        when(isAlpine,
+            when (dotnetVersion = "6.0" || dotnetVersion = "7.0",
                 [
-                    "glibc",
-                    "krb5",
+                    "krb5-libs",
                     "libgcc",
+                    "libintl",
+                    cat("libssl", VARIABLES[cat("libssl|", OS_VERSION_BASE)]),
                     "libstdc++",
-                    "openssl-libs",
                     "zlib"
                 ],
                 [
-                    "glibc",
-                    "icu",
-                    "krb5",
                     "libgcc",
+                    cat("libssl", VARIABLES[cat("libssl|", OS_VERSION_BASE)]),
                     "libstdc++",
-                    "openssl-libs",
                     "zlib"
-                ]),
-            [
-                "libc6",
-                "libgcc1",
-                "libgssapi-krb5-2",
-                cat("libicu", VARIABLES[cat("libicu|", OS_VERSION_BASE)]),
-                cat("libssl", VARIABLES[cat("libssl|", OS_VERSION_BASE)]),
-                "libstdc++6",
-                "zlib1g"
-            ])) ^
+                ]
+            ),
+            when(isMariner,
+                when(isDistrolessMariner,
+                    [
+                        "glibc",
+                        "krb5",
+                        "libgcc",
+                        "libstdc++",
+                        "openssl-libs",
+                        "zlib"
+                    ],
+                    [
+                        "glibc",
+                        "icu",
+                        "krb5",
+                        "libgcc",
+                        "libstdc++",
+                        "openssl-libs",
+                        "zlib"
+                    ]),
+                [
+                    "libc6",
+                    "libgcc1",
+                    "libgssapi-krb5-2",
+                    cat("libicu", VARIABLES[cat("libicu|", OS_VERSION_BASE)]),
+                    cat("libssl", VARIABLES[cat("libssl|", OS_VERSION_BASE)]),
+                    "libstdc++6",
+                    "zlib1g"
+                ])
+            )
+        ) ^
     set certsPkgName to when(isDistrolessMariner,
         "prebuilt-ca-certificates",
         when(isAlpine && dotnetVersion != "6.0" && dotnetVersion != "7.0",
