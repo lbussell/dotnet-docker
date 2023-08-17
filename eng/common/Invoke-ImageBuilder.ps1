@@ -8,7 +8,7 @@ Executes ImageBuilder with the specified args.
 The args to pass to ImageBuilder.
 
 .PARAMETER ReuseImageBuilderImage
-Indicates that a previously built ImageBuilder image is presumed to exist locally and that 
+Indicates that a previously built ImageBuilder image is presumed to exist locally and that
 it should be used for this execution of the script.  This allows some optimization when
 multiple calls are being made to this script that don't require a fresh image (i.e. the
 repo contents in the image don't need to be or should not be updated with each call to
@@ -69,7 +69,7 @@ try {
                 + "IMAGE=${imageNames.imageBuilderName} -f eng/common/Dockerfile.WithRepo .")
         }
 
-        $imageBuilderCmd = "docker run --name $imageBuilderContainerName -v /var/run/docker.sock:/var/run/docker.sock $imageBuilderImageName"
+        $imageBuilderCmd = "docker run --name $imageBuilderContainerName -v $(pwd):/repo -w /repo -v /var/run/docker.sock:/var/run/docker.sock ${imageNames.imageBuilderName}"
         $containerCreated = $true
     }
     else {
@@ -99,6 +99,6 @@ finally {
     if ($containerCreated) {
         Exec "docker container rm -f $imageBuilderContainerName"
     }
-    
+
     popd
 }

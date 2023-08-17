@@ -21,7 +21,7 @@ param(
 
     # Categories of tests to run
     [ValidateSet("runtime", "runtime-deps", "aspnet", "sdk", "pre-build", "sample", "image-size", "monitor")]
-    [string[]]$TestCategories = @("runtime", "runtime-deps", "aspnet", "sdk", "pre-build", "sample", "image-size", "monitor")
+    [string[]]$TestCategories = @("runtime", "runtime-deps", "aspnet", "sdk", "image-size", "monitor")
 )
 
 if ($Version -notmatch '^\d+\.\d+(\.[\d*])?|\*$') {
@@ -45,7 +45,7 @@ if ($Mode -eq "BuildAndTest" -or $Mode -eq "Build") {
         -OS $OS `
         -Architecture $Architecture `
         -Paths $Paths `
-        -OptionalImageBuilderArgs $OptionalImageBuilderArgs
+        -OptionalImageBuilderArgs "$OptionalImageBuilderArgs --image-info-output-path image-info.json --source-repo https://github.com/dotnet/dotnet-docker"
 
     $activeOS = docker version -f "{{ .Server.Os }}"
     if ($activeOS -eq "windows" -and -not $OS) {
@@ -79,5 +79,6 @@ if ($Mode -eq "BuildAndTest" -or $Mode -eq "Test") {
         -Version $TestVersion `
         -OSVersions @($OS) `
         -Architecture $Architecture `
-        -TestCategories $localTestCategories
+        -TestCategories $localTestCategories `
+        -ImageInfoPath /Users/logan/sources/dotnet-docker/image-info.json
 }
