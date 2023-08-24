@@ -1,6 +1,8 @@
 {{
     _ ARGS:
-        is-aot (optional): Whether to use the smallest set of packages that is necessary to run native AOT apps ^
+        is-aot (optional): Whether to use the smallest set of packages necessary to run native AOT apps
+        is-extra (optional): Whether to include extra packages that are not needed for every app,
+            for example globalization support ^
 
     set dotnetVersion to join(slice(split(PRODUCT_VERSION, "."), 0, 2), ".") ^
     set isAlpine to find(OS_ARCH_HYPHENATED, "Alpine") >= 0 ^
@@ -54,7 +56,8 @@ FROM {{baseImageRepo}}:{{baseImageTag}}}}
 
 RUN {{InsertTemplate("../Dockerfile.linux.install-deps",
     [
-        "is-aot": ARGS["is-aot"]
+        "is-aot": ARGS["is-aot"],
+        "is-extra": ARGS["is-extra"]
     ]
 )}}{{if isRpmInstall:{{if isMultiStage:
 
