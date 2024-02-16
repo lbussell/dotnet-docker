@@ -1,14 +1,14 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-namespace Microsoft.DotNet.ImageBuilder.Models.Manifest;
+namespace Microsoft.DotNet.ImageBuilder.Model.Manifest;
 
 public record PackageQueryInfo(string? GetInstalledPackagesPath, string? GetUpgradablePackagesPath);
 
 // #nullable enable
 // using System.ComponentModel;
 //
-// namespace Microsoft.DotNet.ImageBuilder.Models.Manifest
+// namespace Microsoft.DotNet.ImageBuilder.Model.Manifest
 // {
 //     [Description(
 //         "Relative path to the template the Dockerfile is generated from."

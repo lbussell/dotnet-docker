@@ -2,93 +2,37 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace Microsoft.DotNet.Docker.Models.Manifest;
+namespace Microsoft.DotNet.Docker.Model.Manifest;
 
-public record Platform(
-    IDictionary<string, string> BuildArgs,
-    string Dockerfile,
-    string? DockerfileTemplate,
-    OS OS,
-    string OsVersion,
-    IDictionary<string, Tag> Tags,
-    CustomBuildLegGroup[] CustomBuildLegGroups,
-    string? Variant,
-    Architecture Architecture = Architecture.AMD64);
+using System.Text.Json.Serialization;
 
-// using System;
-// using System.Collections.Generic;
-// using System.ComponentModel;
-// using Newtonsoft.Json;
-// using Newtonsoft.Json.Converters;
-//
-// #nullable enable
-// namespace Microsoft.DotNet.ImageBuilder.Models.Manifest
-// {
-//     [Description(
-//         "A platform object contains metadata about a platform-specific version of an " +
-//         "image and refers to the actual Dockerfile used to build the image.")]
-//     public class Platform
-//     {
-//         [Description(
-//             "The processor architecture associated with the image."
-//             )]
-//         [DefaultValue(Architecture.AMD64)]
-//         [JsonConverter(typeof(StringEnumConverter))]
-//         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-//         public Architecture Architecture { get; set; } = Architecture.AMD64;
-//
-//         [Description(
-//             "A set of values that will passed to the `docker build` command " +
-//             "to override variables defined in the Dockerfile.")]
-//         public IDictionary<string, string> BuildArgs { get; set; } = new Dictionary<string, string>();
-//
-//         [Description(
-//             "Relative path to the associated Dockerfile. This can be a file or a " +
-//             "directory. If it is a directory, the file name defaults to Dockerfile."
-//             )]
-//         [JsonProperty(Required = Required.Always)]
-//         public string Dockerfile { get; set; } = string.Empty;
-//
-//         [Description(
-//             "Relative path to the template the Dockerfile is generated from."
-//             )]
-//         public string? DockerfileTemplate { get; set; }
-//
-//         [Description(
-//             "The generic name of the operating system associated with the image."
-//             )]
-//         [JsonConverter(typeof(StringEnumConverter))]
-//         [JsonProperty(Required = Required.Always)]
-//         public OS OS { get; set; }
-//
-//         [Description(
-//             "The specific version of the operating system associated with the image. " +
-//             "Examples: alpine3.9, bionic, nanoserver-1903."
-//             )]
-//         [JsonProperty(Required = Required.Always)]
-//         public string OsVersion { get; set; } = string.Empty;
-//
-//         [Description(
-//             "The set of platform-specific tags associated with the image."
-//             )]
-//         [JsonProperty(Required = Required.Always)]
-//         public IDictionary<string, Tag> Tags { get; set; } = new Dictionary<string, Tag>();
-//
-//         [Description(
-//             "The custom build leg groups associated with the platform."
-//             )]
-//         public CustomBuildLegGroup[] CustomBuildLegGroups { get; set; } = Array.Empty<CustomBuildLegGroup>();
-//
-//         [Description(
-//             "A label which further distinguishes the architecture when it " +
-//             "contains variants. For example, the ARM architecture has variants " +
-//             "named v6, v7, etc."
-//             )]
-//         public string? Variant { get; set; }
-//
-//         public Platform()
-//         {
-//         }
-//     }
-// }
-// #nullable disable
+public record Platform
+{
+    [JsonPropertyOrder(0)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public Architecture Architecture { get; set; } = Architecture.AMD64;
+
+    [JsonPropertyOrder(1)]
+    public IDictionary<string, string>? BuildArgs { get; set; }
+
+    [JsonPropertyOrder(2)]
+    public required string Dockerfile { get; set; }
+
+    [JsonPropertyOrder(3)]
+    public string? DockerfileTemplate { get; set; }
+
+    [JsonPropertyOrder(4)]
+    public required OS OS { get; set; }
+
+    [JsonPropertyOrder(5)]
+    public required string OsVersion { get; set; }
+
+    [JsonPropertyOrder(6)]
+    public required IDictionary<string, Tag> Tags { get; set; } = new Dictionary<string, Tag>();
+
+    [JsonPropertyOrder(7)]
+    public CustomBuildLegGroup[]? CustomBuildLegGroups { get; set; } = null;
+
+    [JsonPropertyOrder(8)]
+    public string? Variant { get; set; }
+}

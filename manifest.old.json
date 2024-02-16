@@ -329,6 +329,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-arm64v8": {},
                 "6.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -337,8 +338,7 @@
                     "$(Repo:sdk):6.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -350,6 +350,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-arm32v7": {},
                 "6.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -358,8 +359,7 @@
                     "$(Repo:sdk):6.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -399,6 +399,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "6.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -407,8 +408,7 @@
                     "$(Repo:sdk):6.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -420,6 +420,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "6.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -428,8 +429,7 @@
                     "$(Repo:sdk):6.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -506,6 +506,7 @@
                 "6.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "6.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -514,8 +515,7 @@
                     "$(Repo:sdk):6.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -776,6 +776,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-arm64v8": {},
                 "7.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -784,8 +785,7 @@
                     "$(Repo:sdk):7.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -797,6 +797,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-arm32v7": {},
                 "7.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -805,8 +806,7 @@
                     "$(Repo:sdk):7.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -846,6 +846,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "7.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -854,8 +855,7 @@
                     "$(Repo:sdk):7.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -867,6 +867,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "7.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -875,8 +876,7 @@
                     "$(Repo:sdk):7.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -953,6 +953,7 @@
                 "7.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "7.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -961,8 +962,7 @@
                     "$(Repo:sdk):7.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1095,6 +1095,7 @@
                 "8.0-alpine3.18-aot-arm32v7": {},
                 "8.0-alpine-aot-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1104,8 +1105,7 @@
                     "$(Repo:sdk):8.0-alpine3.18-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             },
             {
               "architecture": "arm64",
@@ -1118,6 +1118,7 @@
                 "8.0-alpine3.18-aot-arm64v8": {},
                 "8.0-alpine-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1126,8 +1127,7 @@
                     "$(Repo:sdk):8.0-alpine3.18-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1169,6 +1169,7 @@
                 "8.0-alpine3.18-extra-arm32v7": {},
                 "8.0-alpine-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1177,8 +1178,7 @@
                     "$(Repo:sdk):8.0-alpine3.18-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             },
             {
               "architecture": "arm64",
@@ -1191,6 +1191,7 @@
                 "8.0-alpine3.18-extra-arm64v8": {},
                 "8.0-alpine-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1199,8 +1200,7 @@
                     "$(Repo:sdk):8.0-alpine3.18-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1285,6 +1285,7 @@
                 "$(dotnet|8.0|product-version)-alpine3.19-aot-arm32v7": {},
                 "8.0-alpine3.19-aot-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1294,8 +1295,7 @@
                     "$(Repo:sdk):8.0-alpine3.19-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             },
             {
               "architecture": "arm64",
@@ -1307,6 +1307,7 @@
                 "$(dotnet|8.0|product-version)-alpine3.19-aot-arm64v8": {},
                 "8.0-alpine3.19-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1315,8 +1316,7 @@
                     "$(Repo:sdk):8.0-alpine3.19-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1357,6 +1357,7 @@
                 "$(dotnet|8.0|product-version)-alpine3.19-extra-arm32v7": {},
                 "8.0-alpine3.19-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1365,8 +1366,7 @@
                     "$(Repo:sdk):8.0-alpine3.19-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             },
             {
               "architecture": "arm64",
@@ -1378,6 +1378,7 @@
                 "$(dotnet|8.0|product-version)-alpine3.19-extra-arm64v8": {},
                 "8.0-alpine3.19-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1386,8 +1387,7 @@
                     "$(Repo:sdk):8.0-alpine3.19-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1470,6 +1470,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-arm64v8": {},
                 "8.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -1478,8 +1479,7 @@
                     "$(Repo:sdk):8.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -1491,6 +1491,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-arm32v7": {},
                 "8.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -1499,8 +1500,7 @@
                     "$(Repo:sdk):8.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -1540,6 +1540,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-aot-arm64v8": {},
                 "8.0-jammy-chiseled-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1548,8 +1549,7 @@
                     "$(Repo:sdk):8.0-jammy-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -1561,6 +1561,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-aot-arm32v7": {},
                 "8.0-jammy-chiseled-aot-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1570,8 +1571,7 @@
                     "$(Repo:sdk):8.0-jammy-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -1611,6 +1611,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "8.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1619,8 +1620,7 @@
                     "$(Repo:sdk):8.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -1632,6 +1632,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "8.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1640,8 +1641,7 @@
                     "$(Repo:sdk):8.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -1718,6 +1718,7 @@
                 "8.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "8.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -1726,8 +1727,7 @@
                     "$(Repo:sdk):8.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1770,6 +1770,7 @@
                 "8.0-cbl-mariner2.0-distroless-aot-arm64v8": {},
                 "8.0-cbl-mariner-distroless-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1778,8 +1779,7 @@
                     "$(Repo:sdk):8.0-cbl-mariner2.0-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1822,6 +1822,7 @@
                 "8.0-cbl-mariner2.0-distroless-extra-arm64v8": {},
                 "8.0-cbl-mariner-distroless-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1830,8 +1831,7 @@
                     "$(Repo:sdk):8.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -1967,6 +1967,7 @@
                 "$(dotnet|9.0|floating-tag)-alpine3.19-aot-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-alpine-aot-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1976,8 +1977,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-alpine3.19-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             },
             {
               "architecture": "arm64",
@@ -1990,6 +1990,7 @@
                 "$(dotnet|9.0|floating-tag)-alpine3.19-aot-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-alpine-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -1998,8 +1999,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-alpine3.19-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -2042,6 +2042,7 @@
                 "$(dotnet|9.0|floating-tag)-alpine3.19-extra-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-alpine-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2050,8 +2051,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-alpine3.19-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             },
             {
               "architecture": "arm64",
@@ -2064,6 +2064,7 @@
                 "$(dotnet|9.0|floating-tag)-alpine3.19-extra-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-alpine-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2072,8 +2073,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-alpine3.19-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -2163,6 +2163,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2178,8 +2179,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -2191,6 +2191,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2206,8 +2207,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -2247,6 +2247,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-aot-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2255,8 +2256,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -2268,6 +2268,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-aot-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-aot-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2277,8 +2278,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -2318,6 +2318,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-extra-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2326,8 +2327,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -2339,6 +2339,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-extra-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2347,8 +2348,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -2425,6 +2425,7 @@
                 "$(dotnet|9.0|floating-tag)-cbl-mariner2.0-distroless-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -2433,8 +2434,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -2477,6 +2477,7 @@
                 "$(dotnet|9.0|floating-tag)-cbl-mariner2.0-distroless-aot-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-cbl-mariner-distroless-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2485,8 +2486,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-cbl-mariner2.0-aot-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -2529,6 +2529,7 @@
                 "$(dotnet|9.0|floating-tag)-cbl-mariner2.0-distroless-extra-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-cbl-mariner-distroless-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "test-dependencies",
@@ -2537,8 +2538,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         }
@@ -2632,6 +2632,7 @@
           ]
         },
         {
+          "id": "bullseye-slim",
           "productVersion": "$(dotnet|6.0|product-version)",
           "sharedTags": {
             "$(dotnet|6.0|product-version)-bullseye-slim": {},
@@ -2980,6 +2981,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-arm64v8": {},
                 "6.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -2988,8 +2990,7 @@
                     "$(Repo:sdk):6.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -3004,6 +3005,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-arm32v7": {},
                 "6.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3012,8 +3014,7 @@
                     "$(Repo:sdk):6.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -3066,6 +3067,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "6.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3081,8 +3083,7 @@
                     "$(Repo:runtime):6.0-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -3097,6 +3098,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "6.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3112,8 +3114,7 @@
                     "$(Repo:runtime):6.0-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -3202,6 +3203,7 @@
                 "6.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "6.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3210,8 +3212,7 @@
                     "$(Repo:sdk):6.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -3318,6 +3319,7 @@
           ]
         },
         {
+          "id": "bullseye-slim",
           "productVersion": "$(dotnet|7.0|product-version)",
           "sharedTags": {
             "$(dotnet|7.0|product-version)-bullseye-slim": {},
@@ -3614,6 +3616,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-arm64v8": {},
                 "7.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3622,8 +3625,7 @@
                     "$(Repo:sdk):7.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -3638,6 +3640,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-arm32v7": {},
                 "7.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3646,8 +3649,7 @@
                     "$(Repo:sdk):7.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -3700,6 +3702,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "7.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3715,8 +3718,7 @@
                     "$(Repo:runtime):7.0-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -3731,6 +3733,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "7.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3746,8 +3749,7 @@
                     "$(Repo:runtime):7.0-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -3836,6 +3838,7 @@
                 "7.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "7.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -3844,8 +3847,7 @@
                     "$(Repo:sdk):7.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -4135,6 +4137,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-arm64v8": {},
                 "8.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4143,8 +4146,7 @@
                     "$(Repo:sdk):8.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -4159,6 +4161,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-arm32v7": {},
                 "8.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4167,8 +4170,7 @@
                     "$(Repo:sdk):8.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -4221,6 +4223,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "8.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4236,8 +4239,7 @@
                     "$(Repo:runtime):8.0-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -4252,6 +4254,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "8.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4267,8 +4270,7 @@
                     "$(Repo:runtime):8.0-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -4357,6 +4359,7 @@
                 "8.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "8.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4365,8 +4368,7 @@
                     "$(Repo:sdk):8.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -4484,6 +4486,7 @@
           ]
         },
         {
+          "id": "bookworm-slim",
           "productVersion": "$(dotnet|9.0|product-version)",
           "sharedTags": {
             "$(dotnet|9.0|fixed-tag)-bookworm-slim": {},
@@ -4676,6 +4679,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4684,8 +4688,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -4700,6 +4703,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4708,8 +4712,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -4762,6 +4765,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-extra-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4777,8 +4781,7 @@
                     "$(Repo:runtime):$(dotnet|9.0|floating-tag)-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -4793,6 +4796,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-extra-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4808,8 +4812,7 @@
                     "$(Repo:runtime):$(dotnet|9.0|floating-tag)-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -4898,6 +4901,7 @@
                 "$(dotnet|9.0|floating-tag)-cbl-mariner2.0-distroless-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -4906,8 +4910,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -5067,6 +5070,7 @@
           ]
         },
         {
+          "id": "bullseye-slim",
           "productVersion": "$(dotnet|6.0|product-version)",
           "sharedTags": {
             "$(dotnet|6.0|product-version)-bullseye-slim": {},
@@ -5415,6 +5419,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-arm64v8": {},
                 "6.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -5423,8 +5428,7 @@
                     "$(Repo:sdk):6.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -5439,6 +5443,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-arm32v7": {},
                 "6.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -5447,8 +5452,7 @@
                     "$(Repo:sdk):6.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -5501,6 +5505,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "6.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -5516,8 +5521,7 @@
                     "$(Repo:aspnet):6.0-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -5532,6 +5536,7 @@
                 "$(dotnet|6.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "6.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -5547,8 +5552,7 @@
                     "$(Repo:aspnet):6.0-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -5637,6 +5641,7 @@
                 "6.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "6.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -5645,8 +5650,7 @@
                     "$(Repo:sdk):6.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -5765,6 +5769,7 @@
           ]
         },
         {
+          "id": "bullseye-slim",
           "productVersion": "$(dotnet|7.0|product-version)",
           "sharedTags": {
             "$(dotnet|7.0|product-version)-bullseye-slim": {},
@@ -6061,6 +6066,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-arm64v8": {},
                 "7.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6069,8 +6075,7 @@
                     "$(Repo:sdk):7.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -6085,6 +6090,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-arm32v7": {},
                 "7.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6093,8 +6099,7 @@
                     "$(Repo:sdk):7.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -6147,6 +6152,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "7.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6162,8 +6168,7 @@
                     "$(Repo:aspnet):7.0-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -6178,6 +6183,7 @@
                 "$(dotnet|7.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "7.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6193,8 +6199,7 @@
                     "$(Repo:aspnet):7.0-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -6283,6 +6288,7 @@
                 "7.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "7.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6291,8 +6297,7 @@
                     "$(Repo:sdk):7.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -6696,6 +6701,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-arm64v8": {},
                 "8.0-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6704,8 +6710,7 @@
                     "$(Repo:sdk):8.0-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -6720,6 +6725,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-arm32v7": {},
                 "8.0-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6728,8 +6734,7 @@
                     "$(Repo:sdk):8.0-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -6782,6 +6787,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-extra-arm64v8": {},
                 "8.0-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6797,8 +6803,7 @@
                     "$(Repo:aspnet):8.0-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -6813,6 +6818,7 @@
                 "$(dotnet|8.0|product-version)-jammy-chiseled-extra-arm32v7": {},
                 "8.0-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -6828,8 +6834,7 @@
                     "$(Repo:aspnet):8.0-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -7022,6 +7027,7 @@
                 "8.0-cbl-mariner2.0-distroless-arm64v8": {},
                 "8.0-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7030,8 +7036,7 @@
                     "$(Repo:sdk):8.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -7080,6 +7085,7 @@
                 "8.0-cbl-mariner2.0-distroless-composite-arm64v8": {},
                 "8.0-cbl-mariner-distroless-composite-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7088,8 +7094,7 @@
                     "$(Repo:sdk):8.0-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -7219,6 +7224,7 @@
           ]
         },
         {
+          "id": "bookworm-slim",
           "productVersion": "$(dotnet|9.0|product-version)",
           "sharedTags": {
             "$(dotnet|9.0|fixed-tag)-bookworm-slim": {},
@@ -7467,6 +7473,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7475,8 +7482,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -7491,6 +7497,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7499,8 +7506,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-jammy-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -7553,6 +7559,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-extra-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-extra-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7568,8 +7575,7 @@
                     "$(Repo:aspnet):$(dotnet|9.0|floating-tag)-jammy-chiseled-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             },
             {
               "architecture": "arm",
@@ -7584,6 +7590,7 @@
                 "$(dotnet|9.0|fixed-tag)-jammy-chiseled-extra-arm32v7": {},
                 "$(dotnet|9.0|floating-tag)-jammy-chiseled-extra-arm32v7": {}
               },
+              "variant": "v7",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7599,8 +7606,7 @@
                     "$(Repo:aspnet):$(dotnet|9.0|floating-tag)-jammy-chiseled-arm32v7"
                   ]
                 }
-              ],
-              "variant": "v7"
+              ]
             }
           ]
         },
@@ -7793,6 +7799,7 @@
                 "$(dotnet|9.0|floating-tag)-cbl-mariner2.0-distroless-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-cbl-mariner-distroless-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7801,8 +7808,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -7851,6 +7857,7 @@
                 "$(dotnet|9.0|floating-tag)-cbl-mariner2.0-distroless-composite-arm64v8": {},
                 "$(dotnet|9.0|floating-tag)-cbl-mariner-distroless-composite-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -7859,8 +7866,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-cbl-mariner2.0-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -7974,10 +7980,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/6.0/bullseye-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -7989,10 +7995,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/6.0/bullseye-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8032,6 +8038,7 @@
           ]
         },
         {
+          "id": "bullseye-slim",
           "productVersion": "$(sdk|6.0|product-version)",
           "sharedTags": {
             "$(sdk|6.0|product-version)-bullseye-slim": {},
@@ -8049,10 +8056,10 @@
               "tags": {}
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/6.0/bullseye-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8061,10 +8068,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/6.0/bullseye-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8095,10 +8102,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/6.0/bookworm-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8110,10 +8117,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/6.0/bookworm-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8149,10 +8156,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/6.0/alpine3.18/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8165,10 +8172,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/6.0/alpine3.18/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8203,10 +8210,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/6.0/alpine3.19/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8218,10 +8225,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/6.0/alpine3.19/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8255,10 +8262,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/6.0/focal/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8270,10 +8277,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/6.0/focal/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8307,10 +8314,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/6.0/jammy/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8322,10 +8329,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/6.0/jammy/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8435,10 +8442,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/7.0/bullseye-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8450,10 +8457,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/7.0/bullseye-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8493,6 +8500,7 @@
           ]
         },
         {
+          "id": "bullseye-slim",
           "productVersion": "$(sdk|7.0|product-version)",
           "sharedTags": {
             "$(sdk|7.0|product-version)-bullseye-slim": {},
@@ -8510,10 +8518,10 @@
               "tags": {}
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/7.0/bullseye-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8522,10 +8530,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/7.0/bullseye-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8556,10 +8564,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/7.0/bookworm-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8571,10 +8579,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/7.0/bookworm-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8609,10 +8617,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/7.0/alpine3.18/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8625,10 +8633,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/7.0/alpine3.18/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8664,10 +8672,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/7.0/alpine3.19/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8679,10 +8687,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/7.0/alpine3.19/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8716,10 +8724,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/7.0/jammy/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8731,10 +8739,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/7.0/jammy/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8844,10 +8852,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/8.0/bookworm-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8859,10 +8867,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/bookworm-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8876,6 +8884,7 @@
           ]
         },
         {
+          "id": "bookworm-slim",
           "productVersion": "$(sdk|8.0|product-version)",
           "sharedTags": {
             "$(sdk|8.0|product-version)-bookworm-slim": {},
@@ -8893,10 +8902,10 @@
               "tags": {}
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/8.0/bookworm-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8905,10 +8914,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/bookworm-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8940,10 +8949,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/8.0/alpine3.18/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -8956,10 +8965,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/alpine3.18/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9004,10 +9013,10 @@
               ]
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:sdk)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/alpine3.18-aot/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux.aot",
               "os": "linux",
@@ -9017,6 +9026,7 @@
                 "8.0-alpine3.18-aot-arm64v8": {},
                 "8.0-alpine-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -9025,8 +9035,7 @@
                     "$(Repo:sdk):8.0-alpine3.18-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -9052,10 +9061,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/8.0/alpine3.19/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9067,10 +9076,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/alpine3.19/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9114,10 +9123,10 @@
               ]
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:sdk)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/alpine3.19-aot/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux.aot",
               "os": "linux",
@@ -9126,6 +9135,7 @@
                 "$(sdk|8.0|product-version)-alpine3.19-aot-arm64v8": {},
                 "8.0-alpine3.19-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -9134,8 +9144,7 @@
                     "$(Repo:sdk):8.0-alpine3.19-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -9160,10 +9169,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/8.0/jammy/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9175,10 +9184,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/jammy/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9212,10 +9221,10 @@
               }
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:sdk)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/8.0/jammy-aot/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux.aot",
               "os": "linux",
@@ -9402,10 +9411,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/9.0/bookworm-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9417,10 +9426,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/9.0/bookworm-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9434,6 +9443,7 @@
           ]
         },
         {
+          "id": "bookworm-slim",
           "productVersion": "$(sdk|9.0|product-version)",
           "sharedTags": {
             "$(sdk|9.0|fixed-tag)-bookworm-slim": {},
@@ -9451,10 +9461,10 @@
               "tags": {}
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/9.0/bookworm-slim/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9463,10 +9473,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/9.0/bookworm-slim/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9499,10 +9509,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/9.0/alpine3.19/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9515,10 +9525,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/9.0/alpine3.19/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9564,10 +9574,10 @@
               ]
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:sdk)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/9.0/alpine3.19-aot/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux.aot",
               "os": "linux",
@@ -9577,6 +9587,7 @@
                 "$(sdk|9.0|floating-tag)-alpine3.19-aot-arm64v8": {},
                 "$(sdk|9.0|floating-tag)-alpine-aot-arm64v8": {}
               },
+              "variant": "v8",
               "customBuildLegGroups": [
                 {
                   "name": "pr-build",
@@ -9585,8 +9596,7 @@
                     "$(Repo:sdk):$(sdk|9.0|floating-tag)-alpine3.19-arm64v8"
                   ]
                 }
-              ],
-              "variant": "v8"
+              ]
             }
           ]
         },
@@ -9611,10 +9621,10 @@
               }
             },
             {
-              "architecture": "arm",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm",
               "dockerfile": "src/sdk/9.0/jammy/arm32v7",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9626,10 +9636,10 @@
               "variant": "v7"
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:aspnet)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/9.0/jammy/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux",
               "os": "linux",
@@ -9663,10 +9673,10 @@
               }
             },
             {
-              "architecture": "arm64",
               "buildArgs": {
                 "REPO": "$(Repo:sdk)"
               },
+              "architecture": "arm64",
               "dockerfile": "src/sdk/9.0/jammy-aot/arm64v8",
               "dockerfileTemplate": "eng/dockerfile-templates/sdk/Dockerfile.linux.aot",
               "os": "linux",

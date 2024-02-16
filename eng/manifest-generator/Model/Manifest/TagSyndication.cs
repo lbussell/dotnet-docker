@@ -2,13 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 //
 
-namespace Microsoft.DotNet.Docker.Models.Manifest;
+namespace Microsoft.DotNet.Docker.Model.Manifest;
 
 public record TagSyndication(string Repo, string[] DestinationTags);
 
 // using System.ComponentModel;
 
-// namespace Microsoft.DotNet.ImageBuilder.Models.Manifest
+// namespace Microsoft.DotNet.ImageBuilder.Model.Manifest
 // {
 //     [Description(
 //         "A description of where a tag should be syndicated to."

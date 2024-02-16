@@ -1,0 +1,34 @@
+{
+  "readme": {
+    "path": "readme.md",
+    "templatePath": "bar"
+  },
+  "registry": "foo",
+  "variables": {},
+  "includes": [],
+  "repos": [
+    {
+      "id": "myrepo",
+      "name": "myrepo",
+      "readmes": [],
+      "mcrTagsMetadataTemplate": "myMcrTemplate",
+      "images": [
+        {
+          "productVersion": "1.0.0",
+          "platforms": [
+            {
+              "buildArgs": {},
+              "dockerfile": "Dockerfile",
+              "dockerfileTemplate": "myTemplate",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {},
+              "customBuildLegGroups": [],
+              "variant": "blah"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

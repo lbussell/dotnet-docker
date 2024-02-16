@@ -5,6 +5,7 @@
       "newlineAtEndOfFile": "require"
     },
     "orderingRules": {
+      "usingDirectivesPlacement": "insideNamespace",
       "elementOrder": [
         "kind",
         "constant",

@@ -1,14 +1,14 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-namespace Microsoft.DotNet.Docker.Models.Manifest;
+namespace Microsoft.DotNet.Docker.Model.Manifest;
 
 public record Readme(string Path, string? TemplatePath);
 
 // using System.ComponentModel;
 // using Newtonsoft.Json;
 
-// namespace Microsoft.DotNet.ImageBuilder.Models.Manifest;
+// namespace Microsoft.DotNet.ImageBuilder.Model.Manifest;
 
 // #nullable enable
 // public class Readme
