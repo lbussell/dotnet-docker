@@ -1,0 +1,44 @@
+{
+    "8.0": {
+        "repos": [
+            "runtime-deps",
+            "runtime",
+            "aspnet",
+            "sdk",
+            "monitor"
+        ],
+        "distros": [
+            "bookworm",
+            "alpine3.18",
+            "alpine3.19",
+            "jammy",
+            "cbl-mariner2.0"
+        ],
+        "architectures": [
+            "amd64",
+            "arm",
+            "arm64"
+        ]
+    },
+    "9.0": {
+        "repos": [
+            "runtime-deps",
+            "runtime",
+            "aspnet",
+            "sdk",
+            "monitor",
+            "aspire-dashboard"
+        ],
+        "distros": [
+            "bookworm",
+            "alpine3.19",
+            "noble",
+            "cbl-mariner2.0"
+        ],
+        "architectures": [
+            "amd64",
+            "arm",
+            "arm64"
+        ]
+    }
+}

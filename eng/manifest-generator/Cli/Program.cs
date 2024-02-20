@@ -11,6 +11,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        // RunTest();
+    }
+
+    public static void RunTest()
+    {
         string manifestIn = "C:\\s\\dotnet-docker\\manifest.json";
         string manifestOut = "C:\\s\\dotnet-docker\\manifest.gen.json";
         string manifestTestOut = "C:\\s\\dotnet-docker\\manifest.test.json";
