@@ -209,7 +209,7 @@
     "rocks-toolbox|8.0|url": "$(rocks-toolbox|6.0|url)",
     "rocks-toolbox|9.0|url": "$(rocks-toolbox|6.0|url)",
 
-    "rocks-toolbox|9.0|ref": "v1.0.0",
+    "rocks-toolbox|9.0|ref": "v1.1.2",
     "rocks-toolbox|8.0|ref": "$(rocks-toolbox|9.0|ref)",
     "rocks-toolbox|6.0|ref": "$(rocks-toolbox|9.0|ref)",
 
