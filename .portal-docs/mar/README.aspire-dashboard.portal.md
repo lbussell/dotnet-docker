@@ -13,12 +13,13 @@ Watch [discussions](https://github.com/dotnet/dotnet-docker/discussions/categori
 
 .NET:
 
+* [dotnet](https://mcr.microsoft.com/catalog?search=dotnet): .NET
+* [dotnet/samples](https://mcr.microsoft.com/product/dotnet/samples/about): .NET Samples
 * [dotnet/sdk](https://mcr.microsoft.com/product/dotnet/sdk/about): .NET SDK
 * [dotnet/aspnet](https://mcr.microsoft.com/product/dotnet/aspnet/about): ASP.NET Core Runtime
 * [dotnet/runtime](https://mcr.microsoft.com/product/dotnet/runtime/about): .NET Runtime
 * [dotnet/runtime-deps](https://mcr.microsoft.com/product/dotnet/runtime-deps/about): .NET Runtime Dependencies
 * [dotnet/monitor](https://mcr.microsoft.com/product/dotnet/monitor/about): .NET Monitor Tool
-* [dotnet/samples](https://mcr.microsoft.com/product/dotnet/samples/about): .NET Samples
 * [dotnet/nightly/aspire-dashboard](https://mcr.microsoft.com/product/dotnet/nightly/aspire-dashboard/about): .NET Aspire Dashboard (Preview)
 
 .NET Framework:
