@@ -3,9 +3,6 @@
 
 namespace Microsoft.DotNet.Docker.SizeReportGenerator;
 
-internal static class Program
+internal class SizeReportGenerator
 {
-    public static void Main(string[] args)
-    {
-    }
 }
