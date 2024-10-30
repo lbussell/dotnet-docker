@@ -4,7 +4,7 @@ labels: ["untriaged"]
 body:
   - type: markdown
     attributes:
-      value: >-
+      value: |
         Please keep in mind that the GitHub issue tracker is not intended as a
         general support forum, but for reporting **non-security** bugs and
         feature requests.
