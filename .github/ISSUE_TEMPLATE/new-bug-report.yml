@@ -1,0 +1,90 @@
+name: Bug Report
+description: File a bug report.
+labels: ["untriaged"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please keep in mind that the GitHub issue tracker is not intended as a general support forum, but for reporting **non-security** bugs and feature requests.
+        If you're reporting the presence of a disclosed security vulnerability, such as a CVE reported in one of our container images, please follow our documented [guidance on vulnerability reporting](https://github.com/dotnet/dotnet-docker/blob/main/documentation/vulnerability-reporting.md).
+        If you believe you have an issue that affects the security of .NET, please do NOT create an issue and instead email your issue details to secure@microsoft.com. Your report may be eligible for our bug bounty (https://www.microsoft.com/en-us/msrc/bounty-dot-net-core) but ONLY if it is reported through email.
+        For other types of questions, consider posting to Discussions (https://github.com/dotnet/dotnet-docker/discussions) or Stack Overflow (https://stackoverflow.com).
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce the bug
+      description: |
+        Include minimal steps to reproduce the problem if possible or point us to a simple repro project hosted in a GitHub repo.
+        We will close this issue if:
+        * We are not able to reproduce the behavior you're reporting
+        * The repro project you share with us is too complex
+        * The repro is in a file attachment, such as a zip file
+    validations:
+      required: false
+  - type: textarea
+    id: repro
+    attributes:
+      label: Other information
+      description: |
+        * Please include any relevant error messages. If possible please include text rather than images (so it shows up in searches).
+        * Does this issue consistently happen?  Include the conditions which cause the problem to occur.
+        * Do you know of any workarounds?
+    validations:
+      required: false
+  - type: input
+    id: docker-version
+    attributes:
+      label: Docker Version
+      description: Which version of Docker are you running?
+    validations:
+      required: true
+  - type: input
+    id: image
+    attributes:
+      label: Bug prevalence
+      description: "Which image are you using?"
+      placeholder: "mcr.microsoft.com/dotnet/sdk:8.0@sha256:00ab6163f4c8fdf8ea427b1fa9d9d2312ff623d5810577ad73605a07ba67397a"
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 1.0.2 (Default)
+        - 1.0.3 (Edge)
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com). 
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
