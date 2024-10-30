@@ -1,14 +1,39 @@
-name: Bug Report
-description: File a bug report.
+name: Bug report
+description: Create a report about something that is not working
 labels: ["untriaged"]
 body:
   - type: markdown
     attributes:
-      value: |
-        Please keep in mind that the GitHub issue tracker is not intended as a general support forum, but for reporting **non-security** bugs and feature requests.
-        If you're reporting the presence of a disclosed security vulnerability, such as a CVE reported in one of our container images, please follow our documented [guidance on vulnerability reporting](https://github.com/dotnet/dotnet-docker/blob/main/documentation/vulnerability-reporting.md).
-        If you believe you have an issue that affects the security of .NET, please do NOT create an issue and instead email your issue details to secure@microsoft.com. Your report may be eligible for our bug bounty (https://www.microsoft.com/en-us/msrc/bounty-dot-net-core) but ONLY if it is reported through email.
-        For other types of questions, consider posting to Discussions (https://github.com/dotnet/dotnet-docker/discussions) or Stack Overflow (https://stackoverflow.com).
+      value: >-
+        Please keep in mind that the GitHub issue tracker is not intended as a
+        general support forum, but for reporting **non-security** bugs and
+        feature requests.
+
+        If you're reporting the presence of a disclosed security vulnerability,
+        such as a CVE reported in one of our container images, please follow our
+        documented [guidance on vulnerability
+        reporting](https://github.com/dotnet/dotnet-docker/blob/main/documentation/vulnerability-reporting.md).
+
+        If you believe you have an issue that affects the security of .NET,
+        please do NOT create an issue and instead email your issue details to
+        secure@microsoft.com. Your report may be eligible for our [bug
+        bounty](https://www.microsoft.com/en-us/msrc/bounty-dot-net-core) but
+        ONLY if it is reported through email.
+
+        For other types of questions, consider posting to
+        [Discussions](https://github.com/dotnet/dotnet-docker/discussions) or
+        [Stack Overflow](https://stackoverflow.com).
+
+        ---
+  - type: input
+    id: image
+    attributes:
+      label: Which .NET image are you using?
+      description: Please specify the exact digest if possible.
+      placeholder: >-
+        mcr.microsoft.com/dotnet/sdk:8.0@sha256:00ab6163f4c8fdf8ea427b1fa9d9d2312ff623d5810577ad73605a07ba67397a
+    validations:
+      required: true
   - type: textarea
     id: description
     attributes:
@@ -17,74 +42,37 @@ body:
     validations:
       required: true
   - type: textarea
-    id: repro
+    id: steps-to-reproduce
     attributes:
       label: Steps to reproduce the bug
-      description: |
-        Include minimal steps to reproduce the problem if possible or point us to a simple repro project hosted in a GitHub repo.
-        We will close this issue if:
-        * We are not able to reproduce the behavior you're reporting
-        * The repro project you share with us is too complex
-        * The repro is in a file attachment, such as a zip file
-    validations:
-      required: false
+      placeholder: |
+        Include minimal steps to reproduce the problem or point us to a simple
+        repro project hosted in a GitHub repo. We will close this issue if:
+        * we are not able to repro the behavior you're reporting
+        * the repro project you share with us is too complex
+        * the repro is in a file attachment such as a zip file
   - type: textarea
-    id: repro
+    id: other-information
     attributes:
-      label: Other information
-      description: |
-        * Please include any relevant error messages. If possible please include text rather than images (so it shows up in searches).
-        * Does this issue consistently happen?  Include the conditions which cause the problem to occur.
+      label: Other Information
+      description: Any other information that you think is helpful
+      placeholder: |
+        * Include any relevant error messages
+        * When does this issue occur? Does it occur consistently?
         * Do you know of any workarounds?
-    validations:
-      required: false
-  - type: input
+        * What host OS are you running the containers on?
+  - type: textarea
     id: docker-version
     attributes:
-      label: Docker Version
-      description: Which version of Docker are you running?
-    validations:
-      required: true
-  - type: input
-    id: image
-    attributes:
-      label: Bug prevalence
-      description: "Which image are you using?"
-      placeholder: "mcr.microsoft.com/dotnet/sdk:8.0@sha256:00ab6163f4c8fdf8ea427b1fa9d9d2312ff623d5810577ad73605a07ba67397a"
-    validations:
-      required: true
-  - type: dropdown
-    id: version
-    attributes:
-      label: Version
-      description: What version of our software are you running?
-      options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
-      default: 0
-    validations:
-      required: true
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+      label: Output of `docker version`
+      description: Paste the output of `docker version` here.
+      render: console
   - type: textarea
-    id: logs
+    id: docker-info
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
-  - type: checkboxes
-    id: terms
+      label: Output of `docker info`
+      description: Paste the output of `docker info` here.
+      render: console
+  - type: markdown
     attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com). 
-      options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
+      value: Thanks for taking the time to report this!
