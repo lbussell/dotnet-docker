@@ -55,7 +55,7 @@ body:
       label: Steps to reproduce
 
   - type: textarea
-    id: docker-version
+    id: error
     attributes:
       label: Error message
       description: If you are seeing an error message or stack trace, paste it here
