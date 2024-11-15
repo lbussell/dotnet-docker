@@ -1,0 +1,103 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Generate Dockerfiles",
+            "type": "shell",
+            "command": "pwsh ./eng/dockerfile-templates/Get-GeneratedDockerfiles.ps1",
+            "group": "build",
+            "problemMatcher": [
+                {
+                    "owner": "generate-dockerfiles",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": [
+                        {
+                            "regexp": "^(?: )*Template parsing error in file (.*):(.*)(?: )*$",
+                            "file": 1,
+                            "location": 2
+                        },
+                        {
+                            "regexp": "^(?: )*Message: (.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Generate Readmes",
+            "type": "shell",
+            "command": "pwsh ./eng/readme-templates/Get-GeneratedReadmes.ps1",
+            "group": "build",
+            "problemMatcher": [
+                {
+                    "owner": "generate-readmes",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": [
+                        {
+                            "regexp": "^(?: )*Template parsing error in file (.*):(.*)(?: )*$",
+                            "file": 1,
+                            "location": 2
+                        },
+                        {
+                            "regexp": "^(?: )*Message: (.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Test with debugger",
+            "type": "process",
+            "isBackground": true,
+            "command": "dotnet",
+            "args": [
+                "test",
+                "--filter",
+                "\"VerifyFxDependentAppScenario\"",
+                // "\"VerifyFxDependentAppScenario&(Category=runtime-deps|Category=runtime|Category=aspnet|Category=sdk|Category=monitor|Category=aspire-dashboard)\"",
+                // "\"Category=runtime-deps|Category=runtime|Category=aspnet|Category=sdk|Category=monitor|Category=aspire-dashboard\"",
+                // "\"Category=sample\"",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/tests/Microsoft.DotNet.Docker.Tests",
+                "env":
+                {
+                    // "DOCKERFILE_PATHS": "src*8.0*alpine3.18*amd64",
+                    // "DOCKERFILE_PATHS": "*8.0*windowsservercore-ltsc2022*",
+                    "DOCKERFILE_PATHS": "src/aspnet/9.0/alpine3.20/amd64",
+                    "IMAGE_ARCH": "amd64",
+                    // "IMAGE_OS_NAMES": "",
+                    // "REGISTRY": "",
+                    // "CACHE_REGISTRY": "",
+                    // "REPO_PREFIX": "",
+                    // "IMAGE_INFO_PATH": "",
+                    // "PULL_IMAGES": "true",
+                    "SOURCE_BRANCH": "nightly",
+                    "SOURCE_REPO_ROOT": "${workspaceFolder}",
+                    "VSTEST_HOST_DEBUG": "1",
+                    "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
+                    "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "1",
+                    "DOTNET_MULTILEVEL_LOOKUP": "0"
+                }
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+    ]
+}
