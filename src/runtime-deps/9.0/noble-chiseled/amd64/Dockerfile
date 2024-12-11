@@ -6,7 +6,8 @@ RUN curl -fSL --output chisel.tar.gz https://github.com/canonical/chisel/release
     && chisel_sha384='655ca8f45e6f052ab60a4acfeca5017c7d992035e0e4a01f78881c0fe45f2103ce2f18a352ddc8f5fb88bfdd1ed8cc6b' \
     && echo "$chisel_sha384  chisel.tar.gz" | sha384sum -c - \
     && tar -xzf chisel.tar.gz -C /usr/bin/ chisel \
-    && chisel version
+    && curl -fSL --output /usr/bin/chisel-wrapper https://raw.githubusercontent.com/canonical/rocks-toolbox/v1.1.2/chisel-wrapper \
+    && chmod 755 /usr/bin/chisel-wrapper
 
 RUN groupadd \
         --gid=1654 \
@@ -23,7 +24,7 @@ RUN groupadd \
     && cat /etc/group | grep $rootOrAppRegex > "/rootfs/etc/group"
 
 RUN mkdir -p /rootfs/var/lib/dpkg/ \
-    && chisel cut \
+    && chisel-wrapper --generate-dpkg-status /rootfs/var/lib/dpkg/status -- \
         --release ubuntu-24.04 --root /rootfs \
             base-files_base \
             base-files_release-info \
