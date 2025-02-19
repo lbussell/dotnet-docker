@@ -16,7 +16,10 @@ RUN aspnetcore_version=8.0.13 \
 # ASP.NET Core image
 FROM $REPO:8.0.13-noble-chiseled-amd64
 
+WORKDIR /app
+COPY --from=installer ["/dotnet", "/usr/share/dotnet"]
+
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.13
 
-COPY --from=installer ["/dotnet", "/usr/share/dotnet"]
+ENTRYPOINT [ "dotnet", "/app/Aspire.Dashboard.dll" ]

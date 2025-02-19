@@ -16,7 +16,10 @@ RUN aspnetcore_version=10.0.0-preview.1.25107.4 \
 # ASP.NET Core image
 FROM $REPO:10.0.0-preview.1-noble-chiseled-arm32v7
 
+WORKDIR /app
+COPY --from=installer ["/dotnet", "/usr/share/dotnet"]
+
 # ASP.NET Core version
 ENV ASPNET_VERSION=10.0.0-preview.1.25107.4
 
-COPY --from=installer ["/dotnet", "/usr/share/dotnet"]
+ENTRYPOINT [ "dotnet", "/app/Aspire.Dashboard.dll" ]

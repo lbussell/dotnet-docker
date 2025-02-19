@@ -20,5 +20,8 @@
         }
     },
     "remoteUser": "app",
-    "updateContentCommand": "docker pull mcr.microsoft.com/dotnet-buildtools/image-builder:latest"
+    "updateContentCommand": "docker pull mcr.microsoft.com/dotnet-buildtools/image-builder:latest",
+    "tasks": {
+      "build": "pwsh ./eng/dockerfile-templates/Get-GeneratedDockerfiles.ps1"
+    }
 }

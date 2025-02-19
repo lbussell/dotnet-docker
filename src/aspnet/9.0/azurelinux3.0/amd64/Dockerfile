@@ -19,7 +19,10 @@ RUN aspnetcore_version=9.0.2 \
 # ASP.NET Core image
 FROM $REPO:9.0.2-azurelinux3.0-amd64
 
+WORKDIR /app
+COPY --from=installer ["/shared/Microsoft.AspNetCore.App", "/usr/share/dotnet/shared/Microsoft.AspNetCore.App"]
+
 # ASP.NET Core version
 ENV ASPNET_VERSION=9.0.2
 
-COPY --from=installer ["/shared/Microsoft.AspNetCore.App", "/usr/share/dotnet/shared/Microsoft.AspNetCore.App"]
+ENTRYPOINT [ "dotnet", "/app/Aspire.Dashboard.dll" ]
