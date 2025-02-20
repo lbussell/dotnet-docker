@@ -15,7 +15,7 @@
         VARIABLES[cat("aspnet|", dotnetVersion, "|build-version")]) ^
     set lineContinuation to when(isWindows, "`", "\") ^
     set aspnetComment to "# ASP.NET Core version"
-}}{{if ARGS["is-composite-runtime"]:ENV {{lineContinuation}}
+}}hello!{{if ARGS["is-composite-runtime"]:ENV {{lineContinuation}}
     # .NET Runtime version
     DOTNET_VERSION={{runtimeVersion}} {{lineContinuation}}
     {{aspnetComment}}
