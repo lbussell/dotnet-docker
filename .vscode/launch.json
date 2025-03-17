@@ -7,5 +7,29 @@
             "type": "coreclr",
             "request": "attach"
         },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "update dependencies 2 build id test",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/eng/update-dependencies-2/bin/Debug/net9.0/update-dependencies-2.dll",
+            "args": [
+                "--build-id",
+                "2661585"
+            ],
+            "cwd": "${workspaceFolder}/eng/update-dependencies-2",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
     ]
 }
