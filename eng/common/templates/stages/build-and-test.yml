@@ -7,8 +7,6 @@ parameters:
   customGenerateMatrixInitSteps: []
   customBuildInitSteps: []
   customTestInitSteps: []
-  customPublishInitSteps: []
-  customPublishVariables: []
 
   linuxAmdBuildJobTimeout: 60
   linuxArmBuildJobTimeout: 60
@@ -43,11 +41,11 @@ parameters:
   windows2025Pool:
     vmImage: $(defaultWindows2025PoolImage)
 
-stages:
 
 ################################################################################
 # Build Images
 ################################################################################
+stages:
 - stage: Build
   condition: and(succeeded(), contains(variables['stages'], 'build'))
   jobs:

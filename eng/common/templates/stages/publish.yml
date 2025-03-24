@@ -10,6 +10,9 @@ parameters:
   pool:
     vmImage: $(defaultLinuxAmd64PoolImage)
 
+################################################################################
+# Publish Images
+################################################################################
 stages:
 - ${{ if eq(parameters.isInternalServicingValidation, 'false') }}:
   - stage: Publish
