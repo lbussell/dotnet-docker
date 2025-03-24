@@ -1,11 +1,21 @@
 trigger: none
 pr: none
 
+resources:
+  repositories:
+  - repository: InternalVersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
+
+variables:
+- template: /eng/pipelines/variables/core.yml@self
+
 extends:
   template: /eng/common/templates/1es-official.yml@self
-  stages:
-  - stage: release-promotion
-    jobs:
-    - job: release-promotion
-      steps:
-      - script: echo "Hello world"
+  parameters:
+    stages:
+    - template: /eng/pipelines/stages/publish.yml@self
+      parameters:
+        internalProjectName: ${{ variables.internalProjectName }}
+        publicProjectName: ${{ variables.publicProjectName }}

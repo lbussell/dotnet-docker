@@ -15,7 +15,11 @@ extends:
   template: /eng/common/templates/1es-official.yml@self
   parameters:
     stages:
-    - template: /eng/pipelines/stages/build-test-publish-repo.yml@self
+    - template: /eng/pipelines/stages/build-and-test.yml@self
+      parameters:
+        internalProjectName: ${{ variables.internalProjectName }}
+        publicProjectName: ${{ variables.publicProjectName }}
+    - template: /eng/pipelines/stages/publish.yml@self
       parameters:
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
