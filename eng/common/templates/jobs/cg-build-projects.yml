@@ -17,7 +17,7 @@ jobs:
     os: linux
   steps:
   - powershell: >
-      ./eng/common/Install-DotNetSdk.ps1 -Channel "10.0" -InstalPath "/usr/share/.dotnet"
+      ./eng/common/Install-DotNetSdk.ps1 -Channel "10.0" -InstallPath "/usr/share/.dotnet"
     displayName: Run Dotnet Install Script
   - script: >
       find . -name '*.csproj' | grep $(cgBuildGrepArgs) | xargs -n 1 /usr/share/.dotnet/dotnet build
