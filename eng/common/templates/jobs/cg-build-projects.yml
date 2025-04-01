@@ -17,7 +17,7 @@ jobs:
     os: linux
   steps:
   - powershell: >
-      ./eng/common/Install-DotNetSdk.ps1 /usr/share/.dotnet
+      ./eng/common/Install-DotNetSdk.ps1 -Channel "10.0" -InstalPath "/usr/share/.dotnet"
     displayName: Run Dotnet Install Script
   - script: >
       find . -name '*.csproj' | grep $(cgBuildGrepArgs) | xargs -n 1 /usr/share/.dotnet/dotnet build
@@ -29,7 +29,7 @@ jobs:
     - powershell: |
         Write-Host "##vso[build.updatebuildnumber]$env:BUILD_BUILDNUMBER (Dry run)"
         Write-Host "##vso[build.addbuildtag]dry-run"
-        
+
         if ("$(officialBranches)".Split(',').Contains("$(Build.SourceBranch)"))
         {
           Write-Host "##vso[task.logissue type=error]Cannot run a CG dry-run build from an official branch ($(officialBranches))."
