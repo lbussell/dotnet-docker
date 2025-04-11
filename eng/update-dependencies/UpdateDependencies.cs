@@ -32,12 +32,12 @@ namespace Dotnet.Docker
 
         public static string RepoRoot { get; } = Directory.GetCurrentDirectory();
 
-        public static Task Main(string[] args)
-        {
-            RootCommand command = [.. Options.GetCliSymbols()];
-            command.Handler = CommandHandler.Create<Options>(ExecuteAsync);
-            return command.InvokeAsync(args);
-        }
+        // public static Task Main(string[] args)
+        // {
+        //     RootCommand command = [.. Options.GetCliSymbols()];
+        //     command.Handler = CommandHandler.Create<Options>(ExecuteAsync);
+        //     return command.InvokeAsync(args);
+        // }
 
         internal static string ResolveProductVersion(string version, Options options)
         {
