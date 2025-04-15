@@ -19,13 +19,56 @@
             "program": "${workspaceFolder}/eng/update-dependencies-2/bin/Debug/net9.0/update-dependencies-2.dll",
             "args": [
                 "--build-id",
-                "2661585"
+                // "2661585" // VMR
             ],
             "cwd": "${workspaceFolder}/eng/update-dependencies-2",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
         },
+
+        {
+            "name": "update dependencies from-builds",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-update-dependencies",
+            "program": "${workspaceFolder}/eng/update-dependencies/bin/Debug/net9.0/update-dependencies.dll",
+            "args": [
+                "from-builds",
+                // "262746", // VMR
+                // "262486", // SDK 10
+                "263981",/// SDK 8
+            ],
+            "cwd": "${workspaceFolder}/eng/update-dependencies",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+
+        {
+            "name": "update dependencies from-channel",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-update-dependencies",
+            "program": "${workspaceFolder}/eng/update-dependencies/bin/Debug/net9.0/update-dependencies.dll",
+            "args": [
+                "from-channel",
+
+                // VMR
+                "262746",
+                "https://github.com/dotnet/dotnet"
+
+                // "262486", // SDK 10
+                // "4586", // 8.0.4xx
+                // "5128", // .NET 9 Internal
+                // "https://dev.azure.com/dnceng/internal/_git/dotnet-sdk",
+                // "https://github.com/dotnet/sdk"
+            ],
+            "cwd": "${workspaceFolder}/eng/update-dependencies",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+
+
         {
             "name": ".NET Core Attach",
             "type": "coreclr",

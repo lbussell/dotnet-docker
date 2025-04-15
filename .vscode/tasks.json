@@ -113,6 +113,18 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "build-update-dependencies",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/eng/update-dependencies/update-dependencies.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "publish",
             "command": "dotnet",
             "type": "process",

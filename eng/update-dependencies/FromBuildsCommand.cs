@@ -2,12 +2,18 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System;
+using System.Collections.Generic;
 using System.CommandLine;
+using System.Linq;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using DotNet.Docker.Builds;
+using Microsoft.DotNet.ProductConstructionService.Client.Models;
 
 namespace DotNet.Docker;
 
-public class FromBuildsCommand : Command
+public partial class FromBuildsCommand : Command
 {
     public FromBuildsCommand() : base("from-builds", "Update dependencies from BAR builds")
     {
@@ -19,32 +25,47 @@ public class FromBuildsCommand : Command
             });
     }
 
-    public class Handler(GreetingService greetingService) : BaseCommandAction
+    public partial class Handler(BuildsProvider buildsProvider) : BaseCommandAction
     {
-        private readonly GreetingService _greetingService = greetingService;
+        private readonly BuildsProvider _buildsProvider = buildsProvider;
 
         public int[] Builds { get; init; } = [];
 
-        protected override Task<int> RunAsync()
+        [GeneratedRegex(".*((linux(-musl)?)|win)-(arm|arm64|x64).*")]
+        private static partial Regex AssetRegex { get; }
+
+        protected override async Task<int> RunAsync()
         {
-            Console.WriteLine(_greetingService.GetGreeting());
+            Console.WriteLine($"Build IDs: [{string.Join(", ", Builds)}]");
 
-            Console.WriteLine($"Options: [{string.Join(", ", Builds)}]");
+            var builds = await _buildsProvider.GetBuildsAsync(Builds);
 
-            return Task.FromResult(0);
+            // var buildLocations builds.Where
+
+            // JsonSerializerOptions options = new() { WriteIndented = true };
+            // var json = JsonSerializer.Serialize(builds, options);
+            // Console.WriteLine(json);
+
+            // foreach (var build in builds)
+            // {
+            //     foreach (var asset in build.Assets)
+            //     {
+            //         var name = asset.Name;
+            //         if (AssetRegex.IsMatch(name))
+            //         {
+            //             Console.WriteLine($"Asset: {name}");
+            //             if (asset.Locations is not null)
+            //             {
+            //                 foreach (var location in asset.Locations)
+            //                 {
+            //                     Console.WriteLine($"- Location: ({location.Type}) {location.Location}");
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+
+            return 0;
         }
-    }
-}
-
-public interface IGreetingService
-{
-    public string GetGreeting();
-}
-
-public class GreetingService : IGreetingService
-{
-    public string GetGreeting()
-    {
-        return "Hello, World????";
     }
 }

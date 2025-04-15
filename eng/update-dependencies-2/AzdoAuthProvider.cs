@@ -1,12 +1,14 @@
-using System.CommandLine;
-using System.CommandLine.Binding;
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
 using System.Net.Http.Headers;
 using System.Text;
+using Azure.Core;
 using Azure.Identity;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 
-namespace update_dependencies_2;
+namespace Microsoft.DotNet.Docker.UpdateDependencies;
 
 internal class AzdoAuthProvider(Func<string> getToken)
 {
@@ -32,24 +34,7 @@ internal class AzdoAuthProvider(Func<string> getToken)
     {
         const string Scope = "499b84ac-1321-427f-aa17-267ca6975798/.default";
         var cred = new AzureDeveloperCliCredential();
-        string pat = cred.GetToken(new Azure.Core.TokenRequestContext(scopes: [Scope])).Token;
+        string pat = cred.GetToken(new TokenRequestContext(scopes: [Scope])).Token;
         return pat;
-    }
-
-    internal class Binder : BinderBase<AzdoAuthProvider>
-    {
-        public required Option<string?> AzdoPatOption { get; init; }
-
-        protected override AzdoAuthProvider GetBoundValue(BindingContext context)
-        {
-            string? azdoPatOption = context.ParseResult.GetValueForOption(AzdoPatOption);
-            Func<string> getToken = azdoPatOption switch
-            {
-                null => GetAzdCliToken,
-                _ => () => azdoPatOption
-            };
-
-            return new AzdoAuthProvider(getToken);
-        }
     }
 }
