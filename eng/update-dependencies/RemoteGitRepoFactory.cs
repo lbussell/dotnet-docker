@@ -4,7 +4,7 @@ using Microsoft.DotNet.DarcLib;
 using Microsoft.DotNet.DarcLib.Helpers;
 using Microsoft.Extensions.Logging;
 
-namespace DotNet.Docker;
+namespace Dotnet.Docker;
 
 public class DependencyManagerFactory(
     IAzureDevOpsTokenProvider azdoTokenProvider,

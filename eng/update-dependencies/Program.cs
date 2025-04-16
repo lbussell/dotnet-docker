@@ -3,10 +3,11 @@
 
 using System.CommandLine;
 using System.CommandLine.Hosting;
-using Microsoft.Extensions.Hosting;
-using DotNet.Docker;
-using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
+using Dotnet.Docker;
 using Microsoft.DotNet.DarcLib;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 
 var rootCommand = new RootCommand()
@@ -14,20 +15,24 @@ var rootCommand = new RootCommand()
     FromChannelCommand.Create(
         name: "from-channel",
         description: "Update dependencies using the latest build from a channel"),
+    SpecificCommand.Create(
+        name: "specific",
+        description: "Update dependencies using specific product versions"),
 };
 
 var config = new CommandLineConfiguration(rootCommand);
 
 config.UseHost(
     _ => Host.CreateDefaultBuilder(),
-    host =>
-    {
-        host.ConfigureServices(services =>
+    host => host.ConfigureServices(services =>
         {
             services.AddSingleton<IBasicBarClient>(_ => new BarApiClient(null, null, false));
+            services.AddSingleton<IAssetUrlResolver, AssetUrlResolver>();
+            services.AddSingleton<HttpClient>();
 
             FromChannelCommand.Register<FromChannelCommand>(services);
-        });
-    });
+            SpecificCommand.Register<SpecificCommand>(services);
+        })
+    );
 
 return await config.InvokeAsync(args);

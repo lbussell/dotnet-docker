@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.DotNet.DarcLib;
 using Microsoft.DotNet.ProductConstructionService.Client.Models;
 
-namespace DotNet.Docker.Builds;
+namespace Dotnet.Docker.Builds;
 
 public class BuildsProvider(IBasicBarClient barClient)
 {

@@ -19,10 +19,10 @@ internal class NuGetConfigUpdater : IDependencyUpdater
 {
     private const string PkgSrcSuffix = "_internal";
     private readonly string _repoRoot;
-    private readonly Options _options;
+    private readonly SpecificCommandOptions _options;
     private readonly string _configPath;
 
-    public NuGetConfigUpdater(string repoRoot, Options options)
+    public NuGetConfigUpdater(string repoRoot, SpecificCommandOptions options)
     {
         _repoRoot = repoRoot;
         _options = options;

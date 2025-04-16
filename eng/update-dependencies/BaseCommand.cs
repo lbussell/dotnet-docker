@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DotNet.Docker;
+namespace Dotnet.Docker;
 
-internal abstract class BaseCommand<TOptions>() where TOptions : IOptions
+public abstract class BaseCommand<TOptions>() where TOptions : IOptions
 {
     public abstract Task<int> ExecuteAsync(TOptions options);
 
@@ -46,7 +46,7 @@ internal abstract class BaseCommand<TOptions>() where TOptions : IOptions
             });
 }
 
-internal interface IOptions
+public interface IOptions
 {
     public static abstract List<Option> Options { get; }
     public static abstract List<Argument> Arguments { get; }

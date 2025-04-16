@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Azure.Identity;
 using Maestro.Common.AzureDevOpsTokens;
 
-namespace DotNet.Docker;
+namespace Dotnet.Docker;
 
 public class AzureDevOpsTokenProvider(string? token = null) : IAzureDevOpsTokenProvider
 {

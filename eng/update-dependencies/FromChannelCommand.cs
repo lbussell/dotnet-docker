@@ -5,14 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.Linq;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.DotNet.DarcLib;
-using Microsoft.DotNet.DarcLib.Models;
-using Microsoft.DotNet.DarcLib.Models.Darc;
 using Microsoft.DotNet.ProductConstructionService.Client.Models;
 using Microsoft.Extensions.Logging;
 
-namespace DotNet.Docker;
+namespace Dotnet.Docker;
 
 internal class FromChannelOptions : IOptions
 {
@@ -36,11 +36,13 @@ internal class FromChannelOptions : IOptions
     public static List<Option> Options { get; } = [];
 }
 
-internal class FromChannelCommand(
+internal partial class FromChannelCommand(
+    IAssetUrlResolver assetUrlResolver,
     IBasicBarClient barClient,
     ILogger<FromChannelCommand> logger)
     : BaseCommand<FromChannelOptions>
 {
+    private readonly IAssetUrlResolver _assetResolver = assetUrlResolver;
     private readonly IBasicBarClient _barClient = barClient;
     private readonly ILogger<FromChannelCommand> _logger = logger;
 
@@ -66,13 +68,12 @@ internal class FromChannelCommand(
                 $"{latestBuild.AzureDevOpsRepository ?? latestBuild.GitHubRepository} instead.");
         }
 
-        var updates = GetUpdatesFromVmrBuild(latestBuild);
+        var updates = await GetUpdatesFromVmrBuildAsync(latestBuild);
 
         // var sdkCommit = latestBuild.Commit;
 
         // Channel channel = await _barClient.GetChannelAsync(Channel);
         // var asset = await _barClient.GetAssetsAsync("productCommit-linux-x64.json");
-        // IEnumerable<Asset> assets = await _barClient.GetAssetsAsync(buildId: latestBuild.Id);
 
         // var runtimeCommit =
         //     dependencies.FirstOrDefault(dependency => dependency.Name == "Microsoft.NETCore.App.Ref")?.Commit
@@ -87,12 +88,86 @@ internal class FromChannelCommand(
         return 0;
     }
 
-    private IReadOnlyDictionary<string, string> GetUpdatesFromVmrBuild(Build vmrBuild)
+    private async Task<IReadOnlyDictionary<string, string>> GetUpdatesFromVmrBuildAsync(Build build)
     {
-        var majorMinorVersion = new Version();
         var updates = new Dictionary<string, string>();
 
+        IEnumerable<Asset> assets = await _barClient.GetAssetsAsync(buildId: build.Id);
+        Asset productCommitAsset = assets.FirstOrDefault(a => ProductCommitInfos.AssetRegex.IsMatch(a.Name))
+            ?? throw new InvalidOperationException($"Could not find product commit version in assets.");
+
+        string productCommitVersionResponse = await _assetResolver.GetAssetContentsAsync(productCommitAsset);
+        var productInfos = ProductCommitInfos.FromJson(productCommitVersionResponse);
+
+        Version majorMinorVersion = ResolveMajorMinorVersion(productInfos.Sdk.Version);
+
+        var updater = new DockerfileShaUpdater(
+            "runtime",
+            majorMinorVersion.ToString(),
+            productInfos.Sdk.Version,
+            "linux-musl",
+            "x64",
+            productInfos.Sdk.Commit,
+            default!);
+
+        /**
+            "dotnet|10.0|product-version": "10.0.0-preview.3",
+            "dotnet|10.0|fixed-tag": "$(dotnet|10.0|product-version)",
+            "dotnet|10.0|minor-tag": "10.0-preview",
+            "dotnet|10.0|base-url|main": "$(base-url|public|preview|main)",
+            "dotnet|10.0|base-url|nightly": "$(base-url|public|preview|nightly)",
+
+            "runtime|10.0|build-version": "10.0.0-preview.3.25171.5",
+            "runtime|10.0|linux-musl|x64|sha": "...",
+            "runtime|10.0|linux-musl|arm|sha": "...",
+            "runtime|10.0|linux-musl|arm64|sha": "...",
+            "runtime|10.0|linux|arm|sha": "...",
+            "runtime|10.0|linux|x64|sha": "...",
+            "runtime|10.0|linux|arm64|sha": "...",
+            "runtime|10.0|win|x64|sha": "...",
+
+            "aspnet|10.0|build-version": "10.0.0-preview.3.25172.1",
+            "aspnet|10.0|linux-musl|x64|sha": "...",
+            "aspnet|10.0|linux-musl|arm|sha": "...",
+            "aspnet|10.0|linux-musl|arm64|sha": "...",
+            "aspnet|10.0|linux|arm|sha": "...",
+            "aspnet|10.0|linux|x64|sha": "...",
+            "aspnet|10.0|linux|arm64|sha": "...",
+            "aspnet|10.0|win|x64|sha": "...",
+
+            "aspnet-composite|10.0|linux|x64|sha": "...",
+            "aspnet-composite|10.0|linux|arm|sha": "...",
+            "aspnet-composite|10.0|linux|arm64|sha": "...",
+            "aspnet-composite|10.0|linux-musl|x64|sha": "...",
+            "aspnet-composite|10.0|linux-musl|arm|sha": "...",
+            "aspnet-composite|10.0|linux-musl|arm64|sha": "...",
+
+            "sdk|10.0|build-version": "10.0.100-preview.3.25201.16",
+            "sdk|10.0|product-version": "10.0.100-preview.3",
+            "sdk|10.0|fixed-tag": "$(sdk|10.0|product-version)",
+            "sdk|10.0|minor-tag": "$(dotnet|10.0|minor-tag)",
+            "sdk|10.0|linux-musl|arm|sha": "...",
+            "sdk|10.0|linux-musl|arm64|sha": "...",
+            "sdk|10.0|linux-musl|x64|sha": "...",
+            "sdk|10.0|linux|arm|sha": "...",
+            "sdk|10.0|linux|arm64|sha": "...",
+            "sdk|10.0|linux|x64|sha": "...",
+            "sdk|10.0|win|x64|sha": "...",
+        **/
+
         return updates;
+    }
+
+    private static Version ResolveMajorMinorVersion(string versionString)
+    {
+        var versionParts = versionString.Split('.');
+
+        if (versionParts.Length < 2)
+        {
+            throw new InvalidOperationException($"Could not parse version '{versionString}'.");
+        }
+
+        return new Version(major: int.Parse(versionParts[0]), minor: int.Parse(versionParts[1]));
     }
 
     private static bool IsVmrBuild(Build build)
@@ -101,4 +176,26 @@ internal class FromChannelCommand(
         return repo.Contains("github.com/dotnet/dotnet")
             || repo.Contains("dev.azure.com/dnceng/internal/_git/dotnet-dotnet");
     }
+
+    private partial record ProductCommitInfos(
+        ProductCommitInfo Sdk,
+        ProductCommitInfo Runtime,
+        ProductCommitInfo Aspnet)
+    {
+        [GeneratedRegex("productCommit-linux-x64.json$")]
+        public static partial Regex AssetRegex { get; }
+
+        public static ProductCommitInfos FromJson(string json)
+        {
+            return JsonSerializer.Deserialize<ProductCommitInfos>(json, JsonOptions)
+                ?? throw new InvalidOperationException($"Could not deserialize product commit versions.");
+        }
+
+        private static JsonSerializerOptions JsonOptions { get; } = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+    };
+
+    private record ProductCommitInfo(string Commit, string Version);
 }
