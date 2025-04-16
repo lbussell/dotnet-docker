@@ -6,33 +6,28 @@ using System.CommandLine.Hosting;
 using Microsoft.Extensions.Hosting;
 using DotNet.Docker;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.DotNet.DarcLib;
-using Microsoft.DotNet.DarcLib.Helpers;
-using Maestro.Common.AzureDevOpsTokens;
+
 
 var rootCommand = new RootCommand()
 {
-    new FromBuildsCommand().UseCommandHandler<FromBuildsCommand.Handler>(),
-    new FromChannelCommand().UseCommandHandler<FromChannelCommand.Handler>(),
-    new Command("specific")
-    {
-    },
+    FromChannelCommand.Create(
+        name: "from-channel",
+        description: "Update dependencies using the latest build from a channel"),
 };
 
-var config = new CommandLineConfiguration(rootCommand)
-    .UseHost(host =>
-        host.ConfigureServices(services =>
-            {
-                services.AddLogging(builder => builder.AddConsole());
+var config = new CommandLineConfiguration(rootCommand);
 
-                services.AddSingleton<IBasicBarClient>(_ => new BarApiClient(null, null, false));
-                services.AddSingleton<IAzureDevOpsTokenProvider>(new DotNet.Docker.AzureDevOpsTokenProvider());
-                services.AddSingleton<IProcessManager>(serviceProvider =>
-                    new ProcessManager(serviceProvider.GetRequiredService<ILogger<ProcessManager>>(), "git"));
-                services.AddSingleton<DependencyManagerFactory>();
-            })
-        .UseDefaultServiceProvider(configure =>
-            configure.ValidateOnBuild = true));
+config.UseHost(
+    _ => Host.CreateDefaultBuilder(),
+    host =>
+    {
+        host.ConfigureServices(services =>
+        {
+            services.AddSingleton<IBasicBarClient>(_ => new BarApiClient(null, null, false));
+
+            FromChannelCommand.Register<FromChannelCommand>(services);
+        });
+    });
 
 return await config.InvokeAsync(args);

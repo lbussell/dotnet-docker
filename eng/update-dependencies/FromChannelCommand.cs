@@ -4,11 +4,9 @@
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.DotNet.DarcLib;
-using Microsoft.DotNet.DarcLib.Helpers;
 using Microsoft.DotNet.DarcLib.Models;
 using Microsoft.DotNet.DarcLib.Models.Darc;
 using Microsoft.DotNet.ProductConstructionService.Client.Models;
@@ -16,105 +14,91 @@ using Microsoft.Extensions.Logging;
 
 namespace DotNet.Docker;
 
-public partial class FromChannelCommand : Command
+internal class FromChannelOptions : IOptions
 {
-    public FromChannelCommand() : base("from-channel", "Update dependencies from BAR channel")
+    public required int Channel { get; init; }
+    public required string Repo { get; init; }
+
+    public static List<Argument> Arguments { get; } =
+    [
+        new Argument<int>("channel")
+        {
+            Arity = ArgumentArity.ExactlyOne,
+            Description = "The BAR channel to use as a source for the update"
+        },
+        new Argument<string>("repo")
+        {
+            Arity = ArgumentArity.ExactlyOne,
+            Description = "The repository to get the latest build from (e.g. 'https://github.com/dotnet/sdk')"
+        },
+    ];
+
+    public static List<Option> Options { get; } = [];
+}
+
+internal class FromChannelCommand(
+    IBasicBarClient barClient,
+    ILogger<FromChannelCommand> logger)
+    : BaseCommand<FromChannelOptions>
+{
+    private readonly IBasicBarClient _barClient = barClient;
+    private readonly ILogger<FromChannelCommand> _logger = logger;
+
+    public override async Task<int> ExecuteAsync(FromChannelOptions options)
     {
-        Arguments.Add(
-            new Argument<int>("channel")
-            {
-                Arity = ArgumentArity.ExactlyOne,
-                Description = "The BAR channel to use as a source for the update"
-            });
-        Arguments.Add(
-            new Argument<string>("repo")
-            {
-                Arity = ArgumentArity.ExactlyOne,
-                Description = "The repository to get the latest build from (e.g. 'https://github.com/dotnet/sdk')"
-            });
+        _logger.LogInformation(
+            "Getting latest build for {options.Repo} from channel {options.Channel}",
+            options.Repo, options.Channel);
+        Build latestBuild = await _barClient.GetLatestBuildAsync(options.Repo, options.Channel);
+
+        string? channelName = latestBuild.Channels.FirstOrDefault(c => c.Id == options.Channel)?.Name;
+        _logger.LogInformation(
+            "Channel {options.Channel} is '{channel.Name}'",
+            options.Channel, latestBuild.Channels.FirstOrDefault(c => c.Id == options.Channel)?.Name);
+        _logger.LogInformation(
+            "Got latest build {latestBuild.Id} with commit {options.Repo}@{latestBuild.Commit}",
+            latestBuild.Id, latestBuild.AzureDevOpsRepository ?? latestBuild.GitHubRepository, latestBuild.Commit);
+
+        if (!IsVmrBuild(latestBuild))
+        {
+            throw new InvalidOperationException(
+                "Expected a build of the VMR, but got a build of " +
+                $"{latestBuild.AzureDevOpsRepository ?? latestBuild.GitHubRepository} instead.");
+        }
+
+        var updates = GetUpdatesFromVmrBuild(latestBuild);
+
+        // var sdkCommit = latestBuild.Commit;
+
+        // Channel channel = await _barClient.GetChannelAsync(Channel);
+        // var asset = await _barClient.GetAssetsAsync("productCommit-linux-x64.json");
+        // IEnumerable<Asset> assets = await _barClient.GetAssetsAsync(buildId: latestBuild.Id);
+
+        // var runtimeCommit =
+        //     dependencies.FirstOrDefault(dependency => dependency.Name == "Microsoft.NETCore.App.Ref")?.Commit
+        //         ?? throw new InvalidOperationException("Could not find Microsoft.NETCore.App.Ref in dependencies.");
+
+        // var aspnetCommit =
+        //     dependencies.FirstOrDefault(dependency => dependency.Name == "Microsoft.AspNetCore.App.Ref")?.Commit
+        //         ?? throw new InvalidOperationException("Could not find Microsoft.AspNetCore.App.Ref in dependencies.");
+
+        // Print(dependencies);
+
+        return 0;
     }
 
-    public partial class Handler(
-        IBasicBarClient barClient,
-        ILogger<Handler> logger,
-        DependencyManagerFactory dependencyManagerFactory)
-        : BaseCommandAction
+    private IReadOnlyDictionary<string, string> GetUpdatesFromVmrBuild(Build vmrBuild)
     {
-        private readonly IBasicBarClient _barClient = barClient;
-        private readonly ILogger<Handler> _logger = logger;
-        private readonly DependencyManagerFactory _dependencyManagerFactory = dependencyManagerFactory;
+        var majorMinorVersion = new Version();
+        var updates = new Dictionary<string, string>();
 
-        public int Channel { get; init; }
+        return updates;
+    }
 
-        public string Repo { get; init; } = "";
-
-        protected override async Task<int> RunAsync()
-        {
-            // Channel channel = await _barClient.GetChannelAsync(Channel);
-            // var asset = await _barClient.GetAssetsAsync("productCommit-linux-x64.json");
-            // IEnumerable<Asset> assets = await _barClient.GetAssetsAsync(buildId: latestBuild.Id);
-
-            _logger.LogInformation($"Getting latest build for {Repo} from channel {Channel}");
-            Build latestBuild = await _barClient.GetLatestBuildAsync(Repo, Channel);
-
-            if (IsVmr(Repo))
-            {
-                var results = GetUpdatesFromVmrBuild(latestBuild);
-            }
-
-            if (!IsSdk(Repo))
-            {
-                throw new InvalidOperationException(
-                    "Expected a build of the SDK repo, but got a build of " +
-                    $"{latestBuild.AzureDevOpsRepository ?? latestBuild.GitHubRepository} instead.");
-            }
-
-            IEnumerable<DependencyDetail> dependencies = await GetRepoDependenciesAsync(Repo, latestBuild.Commit);
-
-            var sdkCommit = latestBuild.Commit;
-
-            var runtimeCommit =
-                dependencies.FirstOrDefault(dependency => dependency.Name == "Microsoft.NETCore.App.Ref")?.Commit
-                    ?? throw new InvalidOperationException("Could not find Microsoft.NETCore.App.Ref in dependencies.");
-
-            var aspnetCommit =
-                dependencies.FirstOrDefault(dependency => dependency.Name == "Microsoft.AspNetCore.App.Ref")?.Commit
-                    ?? throw new InvalidOperationException("Could not find Microsoft.AspNetCore.App.Ref in dependencies.");
-
-            Print(dependencies);
-
-            return 0;
-        }
-
-        private IReadOnlyDictionary<string, string> GetUpdatesFromVmrBuild(Build vmrBuild)
-        {
-            var majorMinorVersion = new Version();
-            var updates = new Dictionary<string, string>();
-
-            return updates;
-        }
-
-        private async Task<IEnumerable<DependencyDetail>> GetRepoDependenciesAsync(
-            string remoteRepoUri,
-            string commitSha)
-        {
-            var dependencyFileManager = _dependencyManagerFactory.CreateDependencyFileManager(remoteRepoUri);
-
-            VersionDetails versionDetails =
-                await dependencyFileManager.ParseVersionDetailsXmlAsync(
-                    remoteRepoUri,
-                    commitSha,
-                    includePinned: true);
-
-            return versionDetails.Dependencies;
-        }
-
-        private static bool IsVmr(string Repo) =>
-            Repo.Contains("github.com/dotnet/dotnet")
-            || Repo.Contains("dev.azure.com/dnceng/internal/_git/dotnet-dotnet");
-
-        private static bool IsSdk(string Repo) =>
-            Repo.Contains("github.com/dotnet/sdk")
-            || Repo.Contains("dev.azure.com/dnceng/internal/_git/dotnet-sdk");
+    private static bool IsVmrBuild(Build build)
+    {
+        string repo = build.GitHubRepository ?? build.AzureDevOpsRepository;
+        return repo.Contains("github.com/dotnet/dotnet")
+            || repo.Contains("dev.azure.com/dnceng/internal/_git/dotnet-dotnet");
     }
 }

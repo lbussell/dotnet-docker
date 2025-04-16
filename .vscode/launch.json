@@ -53,9 +53,12 @@
             "args": [
                 "from-channel",
 
-                // VMR
-                "262746",
+                // VMR channel + repo
+                "5708",
                 "https://github.com/dotnet/dotnet"
+
+                // "262746",
+                // "https://github.com/dotnet/dotnet"
 
                 // "262486", // SDK 10
                 // "4586", // 8.0.4xx
