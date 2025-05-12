@@ -8,33 +8,19 @@ param(
 
 Import-Module -force $PSScriptRoot/../DependencyManagement.psm1
 
-if (-Not $CustomImageBuilderArgs) {
-    $CustomImageBuilderArgs = ""
+function Invoke-GenerateDockerfiles([string] $imageBuilderTag, [string] $SourceBranch) {
+    $command = "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/repo -w /repo ${imageBuilderTag} generateDockerfiles --no-version-logging --var branch=$SourceBranch"
+    Write-Host "Executing: $command"
+    Invoke-Expression $command
 }
 
-if ($Validate) {
-    $CustomImageBuilderArgs += " --validate"
-}
-
-if (-Not $OutputDirectory) {
-    $repoRoot = (Get-Item "$PSScriptRoot").Parent.Parent.FullName
-    $OutputDirectory = $repoRoot
-}
-
-$onDockerfilesGenerated = {
-    param($ContainerName)
-
-    # On Windows, ImageBuilder is run locally due to limitations with running Docker client within a container.
-    # Remove linux condition when https://github.com/dotnet/docker-tools/issues/159 is resolved
-    if ($(Get-DockerOs) -eq "linux" -and -not $Validate) {
-        Exec "docker cp ${ContainerName}:/repo/src $OutputDirectory"
-    }
-}
+# Move to repo root, change this if the script moves.
+pushd "$PSScriptRoot/../../"
 
 if (!$Branch) {
     $Branch = Get-Branch
 }
 
-& $PSScriptRoot/../common/Invoke-ImageBuilder.ps1 `
-    -ImageBuilderArgs "generateDockerfiles $CustomImageBuilderArgs --var branch=$Branch" `
-    -OnCommandExecuted $onDockerfilesGenerated
+$imageBuilderTag = Get-ImageBuilder
+Write-Host "ImageBuilder: $imageBuilderTag"
+Invoke-GenerateDockerfiles $imageBuilderTag $Branch

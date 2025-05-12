@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version 2.0
 
-# Common functions for .NET Docker dependency management
+Import-Module -force $PSScriptRoot/common/Common.psm1
 
 function Get-Branch() {
     $repoRoot = (Get-Item "$PSScriptRoot").Parent.FullName
