@@ -1,0 +1,39 @@
+
+ARG BRANCH="nightly"
+ARG IMAGE_BUILDER="mcr.microsoft.com/dotnet-buildtools/image-builder:linux-amd64"
+
+FROM ${IMAGE_BUILDER} AS imagebuilder
+WORKDIR /repo
+
+# generate-dockerfiles generates Dockerfiles from templates
+FROM imagebuilder AS generate-dockerfiles
+COPY --link eng/dockerfile-templates src/ .
+RUN [ \
+    "/image-builder/Microsoft.DotNet.ImageBuilder", \
+    "generateDockerfiles", \
+    "--no-version-logging", \
+    "--var", "branch=$BRANCH" ]
+
+# generate-readmes generates Readmes from templates
+# FROM imagebuilder AS generate-readmes
+# RUN [ \
+#     "/image-builder/Microsoft.DotNet.ImageBuilder", \
+#     "generateReadmes", \
+#     "--manifest", "manifest.json", \
+#     "--var", "branch=nightly", \
+#     "'https://github.com/dotnet/dotnet-docker'" ]
+# RUN [ \
+#     "/image-builder/Microsoft.DotNet.ImageBuilder", \
+#     "generateReadmes", \
+#     "--manifest", "manifest.samples.json", \
+#     "--var", "branch=main", \
+#     "'https://github.com/dotnet/dotnet-docker'" ]
+
+# generate-dockerfiles-output contains generated Dockerfiles
+FROM scratch AS generate-dockerfiles-output
+COPY --from=generate-dockerfiles /repo/src src
+
+# generate-readmes-output contains generated Readmes
+FROM scratch AS generate-readmes-output
+COPY --from=generate-readmes /repo/*.md ./
+COPY --from=generate-readmes /repo/.portal-docs ./.portal-docs
