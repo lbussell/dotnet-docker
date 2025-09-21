@@ -54,16 +54,21 @@ RUN mkdir /dotnet-symlink \
 # ASP.NET Composite Image
 FROM {{runtimeDepsBaseTag}}
 
-{{InsertTemplate("Dockerfile.envs", ["is-composite-runtime": "true"])}}{{
-if isDistroless:
+{{
+    InsertTemplate("Dockerfile.envs", ["is-composite-runtime": "true"])
+}}{{
+    if isDistroless:
+
 COPY --from=installer ["/usr/share/dotnet", "/usr/share/dotnet"]
 COPY --from=installer ["/dotnet-symlink", "/usr/bin"]
 
 ENTRYPOINT ["/usr/bin/dotnet"]
-CMD ["--info"]^
-else:
+CMD ["--info"]^else:
+
 COPY --from=installer ["/dotnet", "/usr/share/dotnet"]
-RUN {{InsertTemplate("../Dockerfile.linux.symlink", [
-    "from": "/usr/share/dotnet/dotnet",
-    "to": "/usr/bin/dotnet"
-])}}}}
+RUN {{
+    InsertTemplate("../Dockerfile.linux.symlink", [
+        "from": "/usr/share/dotnet/dotnet",
+        "to": "/usr/bin/dotnet"
+    ])
+}}}}

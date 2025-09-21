@@ -6,12 +6,16 @@
         "product-family",
         when(PARENT_REPO = "monitor", cat("monitor-", SHORT_REPO), SHORT_REPO))
 }}{{ARGS["top-header"]}} About
-{{if ARGS["readme-host"] = "mar":{{InsertTemplate("ReposProvider.md",
-  [
-    "template": "Announcement.md",
-    "leading-line-break": "true",
-    "readme-host": ARGS["readme-host"]
-  ])}}}}
-{{InsertTemplate(join(["About", templateQualifier, "md"], "."), [ "top-header": ARGS["top-header"], "readme-host": ARGS["readme-host"] ])}}
+
+{{
+    if ARGS["readme-host"] = "mar":{{
+        InsertTemplate("ReposProvider.md", [
+            "template": "Announcement.md",
+            "leading-line-break": "true",
+            "readme-host": ARGS["readme-host"]
+        ])
+    }}
+
+}}{{InsertTemplate(join(["About", templateQualifier, "md"], "."), [ "top-header": ARGS["top-header"], "readme-host": ARGS["readme-host"] ])}}
 
 Watch [discussions](https://github.com/dotnet/dotnet-docker/discussions/categories/announcements) for Docker-related .NET announcements.
