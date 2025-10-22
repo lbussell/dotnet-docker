@@ -1,0 +1,331 @@
+From 647c3eb254fefab3acabd58bc76c8651aa565929 Mon Sep 17 00:00:00 2001
+From: Logan Bussell <loganbussell@microsoft.com>
+Date: Wed, 22 Oct 2025 16:54:23 -0700
+Subject: [PATCH] This change should cause a merge conflict
+
+---
+ .portal-docs/docker-hub/README.aspire-dashboard.md | 2 +-
+ .portal-docs/docker-hub/README.aspnet.md           | 2 +-
+ .portal-docs/docker-hub/README.monitor-base.md     | 2 +-
+ .portal-docs/docker-hub/README.monitor.md          | 2 +-
+ .portal-docs/docker-hub/README.runtime-deps.md     | 2 +-
+ .portal-docs/docker-hub/README.runtime.md          | 2 +-
+ .portal-docs/docker-hub/README.sdk.md              | 2 +-
+ .portal-docs/docker-hub/README.yarp.md             | 2 +-
+ .portal-docs/mar/README.aspire-dashboard.portal.md | 2 +-
+ .portal-docs/mar/README.aspnet.portal.md           | 2 +-
+ .portal-docs/mar/README.monitor-base.portal.md     | 2 +-
+ .portal-docs/mar/README.monitor.portal.md          | 2 +-
+ .portal-docs/mar/README.runtime-deps.portal.md     | 2 +-
+ .portal-docs/mar/README.runtime.portal.md          | 2 +-
+ .portal-docs/mar/README.sdk.portal.md              | 2 +-
+ .portal-docs/mar/README.yarp.portal.md             | 2 +-
+ README.aspire-dashboard.md                         | 2 +-
+ README.aspnet.md                                   | 2 +-
+ README.md                                          | 2 +-
+ README.monitor-base.md                             | 2 +-
+ README.monitor.md                                  | 2 +-
+ README.runtime-deps.md                             | 2 +-
+ README.runtime.md                                  | 2 +-
+ README.sdk.md                                      | 2 +-
+ README.yarp.md                                     | 2 +-
+ eng/readme-templates/Announcement.md               | 2 +-
+ 26 files changed, 26 insertions(+), 26 deletions(-)
+
+diff --git a/.portal-docs/docker-hub/README.aspire-dashboard.md b/.portal-docs/docker-hub/README.aspire-dashboard.md
+index e63e3ac49e..ed5d8d99dd 100644
+--- a/.portal-docs/docker-hub/README.aspire-dashboard.md
++++ b/.portal-docs/docker-hub/README.aspire-dashboard.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet-aspire-dashboard/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/docker-hub/README.aspnet.md b/.portal-docs/docker-hub/README.aspnet.md
+index 2b61bb784e..46e4646ed4 100644
+--- a/.portal-docs/docker-hub/README.aspnet.md
++++ b/.portal-docs/docker-hub/README.aspnet.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet-aspnet/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/docker-hub/README.monitor-base.md b/.portal-docs/docker-hub/README.monitor-base.md
+index c3e116f442..14afab62d0 100644
+--- a/.portal-docs/docker-hub/README.monitor-base.md
++++ b/.portal-docs/docker-hub/README.monitor-base.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet-monitor-base/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/docker-hub/README.monitor.md b/.portal-docs/docker-hub/README.monitor.md
+index aeac9e2bc8..754fa5b4e9 100644
+--- a/.portal-docs/docker-hub/README.monitor.md
++++ b/.portal-docs/docker-hub/README.monitor.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet-monitor/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/docker-hub/README.runtime-deps.md b/.portal-docs/docker-hub/README.runtime-deps.md
+index 242b8e97fd..3e55d488f7 100644
+--- a/.portal-docs/docker-hub/README.runtime-deps.md
++++ b/.portal-docs/docker-hub/README.runtime-deps.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet-runtime-deps/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/docker-hub/README.runtime.md b/.portal-docs/docker-hub/README.runtime.md
+index 785a36e7d0..0a71a70e1a 100644
+--- a/.portal-docs/docker-hub/README.runtime.md
++++ b/.portal-docs/docker-hub/README.runtime.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet-runtime/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/docker-hub/README.sdk.md b/.portal-docs/docker-hub/README.sdk.md
+index cd69e59355..2c31fdff56 100644
+--- a/.portal-docs/docker-hub/README.sdk.md
++++ b/.portal-docs/docker-hub/README.sdk.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet-sdk/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/docker-hub/README.yarp.md b/.portal-docs/docker-hub/README.yarp.md
+index 02d3a8acb1..fbf671b83c 100644
+--- a/.portal-docs/docker-hub/README.yarp.md
++++ b/.portal-docs/docker-hub/README.yarp.md
+@@ -1,4 +1,4 @@
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://hub.docker.com/r/microsoft/dotnet/) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.aspire-dashboard.portal.md b/.portal-docs/mar/README.aspire-dashboard.portal.md
+index 16d57e0727..220655daca 100644
+--- a/.portal-docs/mar/README.aspire-dashboard.portal.md
++++ b/.portal-docs/mar/README.aspire-dashboard.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/product/dotnet/aspire-dashboard/about) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.aspnet.portal.md b/.portal-docs/mar/README.aspnet.portal.md
+index 1abce17cd3..8678bb83bd 100644
+--- a/.portal-docs/mar/README.aspnet.portal.md
++++ b/.portal-docs/mar/README.aspnet.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/product/dotnet/aspnet/about) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.monitor-base.portal.md b/.portal-docs/mar/README.monitor-base.portal.md
+index ccd1c346d6..c794e37aba 100644
+--- a/.portal-docs/mar/README.monitor-base.portal.md
++++ b/.portal-docs/mar/README.monitor-base.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/product/dotnet/monitor/base/about) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.monitor.portal.md b/.portal-docs/mar/README.monitor.portal.md
+index 4a34153a34..399fa44eb0 100644
+--- a/.portal-docs/mar/README.monitor.portal.md
++++ b/.portal-docs/mar/README.monitor.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/product/dotnet/monitor/about) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.runtime-deps.portal.md b/.portal-docs/mar/README.runtime-deps.portal.md
+index 5260d1f9c7..9ee6f61496 100644
+--- a/.portal-docs/mar/README.runtime-deps.portal.md
++++ b/.portal-docs/mar/README.runtime-deps.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/product/dotnet/runtime-deps/about) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.runtime.portal.md b/.portal-docs/mar/README.runtime.portal.md
+index fa663aeeb8..964d7040a3 100644
+--- a/.portal-docs/mar/README.runtime.portal.md
++++ b/.portal-docs/mar/README.runtime.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/product/dotnet/runtime/about) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.sdk.portal.md b/.portal-docs/mar/README.sdk.portal.md
+index 8b267846bb..78ec7d106b 100644
+--- a/.portal-docs/mar/README.sdk.portal.md
++++ b/.portal-docs/mar/README.sdk.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/product/dotnet/sdk/about) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/.portal-docs/mar/README.yarp.portal.md b/.portal-docs/mar/README.yarp.portal.md
+index 3f84bea2a3..f8bcfc9c0d 100644
+--- a/.portal-docs/mar/README.yarp.portal.md
++++ b/.portal-docs/mar/README.yarp.portal.md
+@@ -1,6 +1,6 @@
+ ## About
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://mcr.microsoft.com/catalog?search=dotnet) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.aspire-dashboard.md b/README.aspire-dashboard.md
+index a6cb3a3582..fb552f2471 100644
+--- a/README.aspire-dashboard.md
++++ b/README.aspire-dashboard.md
+@@ -1,6 +1,6 @@
+ # .NET Aspire Dashboard
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.aspire-dashboard.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.aspnet.md b/README.aspnet.md
+index 16209bea4e..79b4ce8429 100644
+--- a/README.aspnet.md
++++ b/README.aspnet.md
+@@ -1,6 +1,6 @@
+ # ASP.NET Core Runtime
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.aspnet.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.md b/README.md
+index d5d1644ec7..9e581f1de3 100644
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,6 @@
+ # .NET
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.monitor-base.md b/README.monitor-base.md
+index 9c040b0a34..1a707a2dd3 100644
+--- a/README.monitor-base.md
++++ b/README.monitor-base.md
+@@ -1,6 +1,6 @@
+ # .NET Monitor Base
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.monitor-base.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.monitor.md b/README.monitor.md
+index 48a8d249e3..95384e4187 100644
+--- a/README.monitor.md
++++ b/README.monitor.md
+@@ -1,6 +1,6 @@
+ # .NET Monitor Tool
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.monitor.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.runtime-deps.md b/README.runtime-deps.md
+index c87f1f65c4..65e5616a5e 100644
+--- a/README.runtime-deps.md
++++ b/README.runtime-deps.md
+@@ -1,6 +1,6 @@
+ # .NET Runtime Dependencies
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.runtime-deps.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.runtime.md b/README.runtime.md
+index d6c5489b08..35ab22f97f 100644
+--- a/README.runtime.md
++++ b/README.runtime.md
+@@ -1,6 +1,6 @@
+ # .NET Runtime
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.runtime.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.sdk.md b/README.sdk.md
+index f6264eac61..db291da962 100644
+--- a/README.sdk.md
++++ b/README.sdk.md
+@@ -1,6 +1,6 @@
+ # .NET SDK
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.sdk.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/README.yarp.md b/README.yarp.md
+index 2e753c1ede..9be26c228f 100644
+--- a/README.yarp.md
++++ b/README.yarp.md
+@@ -1,6 +1,6 @@
+ # YARP (Yet Another Reverse Proxy)
+ 
+-> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet](https://github.com/dotnet/dotnet-docker/blob/main/README.md) for images with official releases of [.NET](https://github.com/dotnet/core).
+ 
+diff --git a/eng/readme-templates/Announcement.md b/eng/readme-templates/Announcement.md
+index bc0d750f82..67624c807c 100644
+--- a/eng/readme-templates/Announcement.md
++++ b/eng/readme-templates/Announcement.md
+@@ -21,7 +21,7 @@
+ 
+ }}{{if isNightlyRepo || VARIABLES["branch"] = "nightly"
+ :{{if ARGS["leading-line-break"]:
+-}}> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
++}}> **Important**: Hello from the nightly branch!
+ >
+ > See [dotnet]({{url}}) for images with official releases of [.NET](https://github.com/dotnet/core).
+ {{if ARGS["trailing-line-break"]:
