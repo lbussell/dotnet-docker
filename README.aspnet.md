@@ -82,6 +82,7 @@ For more information, see the [composite images section in the Image Variants do
 
 Tags | Dockerfile | OS Version
 -----------| -------------| -------------
+<<<<<<< HEAD
 10.0.0-rc.2-noble-amd64, 10.0-noble-amd64, 10.0.0-rc.2-noble, 10.0-noble, 10.0.0-rc.2, 10.0 | [Dockerfile](src/aspnet/10.0/noble/amd64/Dockerfile) | Ubuntu 24.04
 10.0.0-rc.2-noble-chiseled-amd64, 10.0-noble-chiseled-amd64, 10.0.0-rc.2-noble-chiseled, 10.0-noble-chiseled | [Dockerfile](src/aspnet/10.0/noble-chiseled/amd64/Dockerfile) | Ubuntu 24.04
 10.0.0-rc.2-noble-chiseled-extra-amd64, 10.0-noble-chiseled-extra-amd64, 10.0.0-rc.2-noble-chiseled-extra, 10.0-noble-chiseled-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-extra/amd64/Dockerfile) | Ubuntu 24.04
@@ -95,6 +96,21 @@ Tags | Dockerfile | OS Version
 10.0.0-rc.2-azurelinux3.0-distroless-composite-amd64, 10.0-azurelinux3.0-distroless-composite-amd64, 10.0.0-rc.2-azurelinux3.0-distroless-composite, 10.0-azurelinux3.0-distroless-composite | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite/amd64/Dockerfile) | Azure Linux 3.0
 10.0.0-rc.2-azurelinux3.0-distroless-composite-extra-amd64, 10.0-azurelinux3.0-distroless-composite-extra-amd64, 10.0.0-rc.2-azurelinux3.0-distroless-composite-extra, 10.0-azurelinux3.0-distroless-composite-extra | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite-extra/amd64/Dockerfile) | Azure Linux 3.0
 9.0.10-bookworm-slim-amd64, 9.0-bookworm-slim-amd64, 9.0.10-bookworm-slim, 9.0-bookworm-slim, 9.0.10, 9.0, latest | [Dockerfile](src/aspnet/9.0/bookworm-slim/amd64/Dockerfile) | Debian 12
+=======
+10.0.99-noble-amd64, 10.0-noble-amd64, 10.0.99-noble, 10.0-noble, 10.0.99, 10.0, latest | [Dockerfile](src/aspnet/10.0/noble/amd64/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-amd64, 10.0-noble-chiseled-amd64, 10.0.99-noble-chiseled, 10.0-noble-chiseled | [Dockerfile](src/aspnet/10.0/noble-chiseled/amd64/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-extra-amd64, 10.0-noble-chiseled-extra-amd64, 10.0.99-noble-chiseled-extra, 10.0-noble-chiseled-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-extra/amd64/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-composite-amd64, 10.0-noble-chiseled-composite-amd64, 10.0.99-noble-chiseled-composite, 10.0-noble-chiseled-composite | [Dockerfile](src/aspnet/10.0/noble-chiseled-composite/amd64/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-composite-extra-amd64, 10.0-noble-chiseled-composite-extra-amd64, 10.0.99-noble-chiseled-composite-extra, 10.0-noble-chiseled-composite-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-composite-extra/amd64/Dockerfile) | Ubuntu 24.04
+10.0.99-alpine3.22-amd64, 10.0-alpine3.22-amd64, 10.0-alpine-amd64, 10.0.99-alpine3.22, 10.0-alpine3.22, 10.0-alpine | [Dockerfile](src/aspnet/10.0/alpine3.22/amd64/Dockerfile) | Alpine 3.22
+10.0.99-alpine3.22-composite-amd64, 10.0-alpine3.22-composite-amd64, 10.0-alpine-composite-amd64, 10.0.99-alpine3.22-composite, 10.0-alpine3.22-composite, 10.0-alpine-composite | [Dockerfile](src/aspnet/10.0/alpine3.22-composite/amd64/Dockerfile) | Alpine 3.22
+10.0.99-azurelinux3.0-amd64, 10.0-azurelinux3.0-amd64, 10.0.99-azurelinux3.0, 10.0-azurelinux3.0 | [Dockerfile](src/aspnet/10.0/azurelinux3.0/amd64/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-amd64, 10.0-azurelinux3.0-distroless-amd64, 10.0.99-azurelinux3.0-distroless, 10.0-azurelinux3.0-distroless | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless/amd64/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-extra-amd64, 10.0-azurelinux3.0-distroless-extra-amd64, 10.0.99-azurelinux3.0-distroless-extra, 10.0-azurelinux3.0-distroless-extra | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-extra/amd64/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-composite-amd64, 10.0-azurelinux3.0-distroless-composite-amd64, 10.0.99-azurelinux3.0-distroless-composite, 10.0-azurelinux3.0-distroless-composite | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite/amd64/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-composite-extra-amd64, 10.0-azurelinux3.0-distroless-composite-extra-amd64, 10.0.99-azurelinux3.0-distroless-composite-extra, 10.0-azurelinux3.0-distroless-composite-extra | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite-extra/amd64/Dockerfile) | Azure Linux 3.0
+9.0.10-bookworm-slim-amd64, 9.0-bookworm-slim-amd64, 9.0.10-bookworm-slim, 9.0-bookworm-slim, 9.0.10, 9.0 | [Dockerfile](src/aspnet/9.0/bookworm-slim/amd64/Dockerfile) | Debian 12
+>>>>>>> This commit should cause a merge conflict
 9.0.10-alpine3.21-amd64, 9.0-alpine3.21-amd64, 9.0.10-alpine3.21, 9.0-alpine3.21 | [Dockerfile](src/aspnet/9.0/alpine3.21/amd64/Dockerfile) | Alpine 3.21
 9.0.10-alpine3.21-composite-amd64, 9.0-alpine3.21-composite-amd64, 9.0.10-alpine3.21-composite, 9.0-alpine3.21-composite | [Dockerfile](src/aspnet/9.0/alpine3.21-composite/amd64/Dockerfile) | Alpine 3.21
 9.0.10-alpine3.22-amd64, 9.0-alpine3.22-amd64, 9.0-alpine-amd64, 9.0.10-alpine3.22, 9.0-alpine3.22, 9.0-alpine | [Dockerfile](src/aspnet/9.0/alpine3.22/amd64/Dockerfile) | Alpine 3.22
@@ -134,6 +150,7 @@ Tags | Dockerfile | OS Version
 
 Tags | Dockerfile | OS Version
 -----------| -------------| -------------
+<<<<<<< HEAD
 10.0.0-rc.2-noble-arm64v8, 10.0-noble-arm64v8, 10.0.0-rc.2-noble, 10.0-noble, 10.0.0-rc.2, 10.0 | [Dockerfile](src/aspnet/10.0/noble/arm64v8/Dockerfile) | Ubuntu 24.04
 10.0.0-rc.2-noble-chiseled-arm64v8, 10.0-noble-chiseled-arm64v8, 10.0.0-rc.2-noble-chiseled, 10.0-noble-chiseled | [Dockerfile](src/aspnet/10.0/noble-chiseled/arm64v8/Dockerfile) | Ubuntu 24.04
 10.0.0-rc.2-noble-chiseled-extra-arm64v8, 10.0-noble-chiseled-extra-arm64v8, 10.0.0-rc.2-noble-chiseled-extra, 10.0-noble-chiseled-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-extra/arm64v8/Dockerfile) | Ubuntu 24.04
@@ -147,6 +164,21 @@ Tags | Dockerfile | OS Version
 10.0.0-rc.2-azurelinux3.0-distroless-composite-arm64v8, 10.0-azurelinux3.0-distroless-composite-arm64v8, 10.0.0-rc.2-azurelinux3.0-distroless-composite, 10.0-azurelinux3.0-distroless-composite | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite/arm64v8/Dockerfile) | Azure Linux 3.0
 10.0.0-rc.2-azurelinux3.0-distroless-composite-extra-arm64v8, 10.0-azurelinux3.0-distroless-composite-extra-arm64v8, 10.0.0-rc.2-azurelinux3.0-distroless-composite-extra, 10.0-azurelinux3.0-distroless-composite-extra | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite-extra/arm64v8/Dockerfile) | Azure Linux 3.0
 9.0.10-bookworm-slim-arm64v8, 9.0-bookworm-slim-arm64v8, 9.0.10-bookworm-slim, 9.0-bookworm-slim, 9.0.10, 9.0, latest | [Dockerfile](src/aspnet/9.0/bookworm-slim/arm64v8/Dockerfile) | Debian 12
+=======
+10.0.99-noble-arm64v8, 10.0-noble-arm64v8, 10.0.99-noble, 10.0-noble, 10.0.99, 10.0, latest | [Dockerfile](src/aspnet/10.0/noble/arm64v8/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-arm64v8, 10.0-noble-chiseled-arm64v8, 10.0.99-noble-chiseled, 10.0-noble-chiseled | [Dockerfile](src/aspnet/10.0/noble-chiseled/arm64v8/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-extra-arm64v8, 10.0-noble-chiseled-extra-arm64v8, 10.0.99-noble-chiseled-extra, 10.0-noble-chiseled-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-extra/arm64v8/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-composite-arm64v8, 10.0-noble-chiseled-composite-arm64v8, 10.0.99-noble-chiseled-composite, 10.0-noble-chiseled-composite | [Dockerfile](src/aspnet/10.0/noble-chiseled-composite/arm64v8/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-composite-extra-arm64v8, 10.0-noble-chiseled-composite-extra-arm64v8, 10.0.99-noble-chiseled-composite-extra, 10.0-noble-chiseled-composite-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-composite-extra/arm64v8/Dockerfile) | Ubuntu 24.04
+10.0.99-alpine3.22-arm64v8, 10.0-alpine3.22-arm64v8, 10.0-alpine-arm64v8, 10.0.99-alpine3.22, 10.0-alpine3.22, 10.0-alpine | [Dockerfile](src/aspnet/10.0/alpine3.22/arm64v8/Dockerfile) | Alpine 3.22
+10.0.99-alpine3.22-composite-arm64v8, 10.0-alpine3.22-composite-arm64v8, 10.0-alpine-composite-arm64v8, 10.0.99-alpine3.22-composite, 10.0-alpine3.22-composite, 10.0-alpine-composite | [Dockerfile](src/aspnet/10.0/alpine3.22-composite/arm64v8/Dockerfile) | Alpine 3.22
+10.0.99-azurelinux3.0-arm64v8, 10.0-azurelinux3.0-arm64v8, 10.0.99-azurelinux3.0, 10.0-azurelinux3.0 | [Dockerfile](src/aspnet/10.0/azurelinux3.0/arm64v8/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-arm64v8, 10.0-azurelinux3.0-distroless-arm64v8, 10.0.99-azurelinux3.0-distroless, 10.0-azurelinux3.0-distroless | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless/arm64v8/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-extra-arm64v8, 10.0-azurelinux3.0-distroless-extra-arm64v8, 10.0.99-azurelinux3.0-distroless-extra, 10.0-azurelinux3.0-distroless-extra | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-extra/arm64v8/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-composite-arm64v8, 10.0-azurelinux3.0-distroless-composite-arm64v8, 10.0.99-azurelinux3.0-distroless-composite, 10.0-azurelinux3.0-distroless-composite | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite/arm64v8/Dockerfile) | Azure Linux 3.0
+10.0.99-azurelinux3.0-distroless-composite-extra-arm64v8, 10.0-azurelinux3.0-distroless-composite-extra-arm64v8, 10.0.99-azurelinux3.0-distroless-composite-extra, 10.0-azurelinux3.0-distroless-composite-extra | [Dockerfile](src/aspnet/10.0/azurelinux3.0-distroless-composite-extra/arm64v8/Dockerfile) | Azure Linux 3.0
+9.0.10-bookworm-slim-arm64v8, 9.0-bookworm-slim-arm64v8, 9.0.10-bookworm-slim, 9.0-bookworm-slim, 9.0.10, 9.0 | [Dockerfile](src/aspnet/9.0/bookworm-slim/arm64v8/Dockerfile) | Debian 12
+>>>>>>> This commit should cause a merge conflict
 9.0.10-alpine3.21-arm64v8, 9.0-alpine3.21-arm64v8, 9.0.10-alpine3.21, 9.0-alpine3.21 | [Dockerfile](src/aspnet/9.0/alpine3.21/arm64v8/Dockerfile) | Alpine 3.21
 9.0.10-alpine3.21-composite-arm64v8, 9.0-alpine3.21-composite-arm64v8, 9.0.10-alpine3.21-composite, 9.0-alpine3.21-composite | [Dockerfile](src/aspnet/9.0/alpine3.21-composite/arm64v8/Dockerfile) | Alpine 3.21
 9.0.10-alpine3.22-arm64v8, 9.0-alpine3.22-arm64v8, 9.0-alpine-arm64v8, 9.0.10-alpine3.22, 9.0-alpine3.22, 9.0-alpine | [Dockerfile](src/aspnet/9.0/alpine3.22/arm64v8/Dockerfile) | Alpine 3.22
@@ -186,6 +218,7 @@ Tags | Dockerfile | OS Version
 
 Tags | Dockerfile | OS Version
 -----------| -------------| -------------
+<<<<<<< HEAD
 10.0.0-rc.2-noble-arm32v7, 10.0-noble-arm32v7, 10.0.0-rc.2-noble, 10.0-noble, 10.0.0-rc.2, 10.0 | [Dockerfile](src/aspnet/10.0/noble/arm32v7/Dockerfile) | Ubuntu 24.04
 10.0.0-rc.2-noble-chiseled-arm32v7, 10.0-noble-chiseled-arm32v7, 10.0.0-rc.2-noble-chiseled, 10.0-noble-chiseled | [Dockerfile](src/aspnet/10.0/noble-chiseled/arm32v7/Dockerfile) | Ubuntu 24.04
 10.0.0-rc.2-noble-chiseled-extra-arm32v7, 10.0-noble-chiseled-extra-arm32v7, 10.0.0-rc.2-noble-chiseled-extra, 10.0-noble-chiseled-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-extra/arm32v7/Dockerfile) | Ubuntu 24.04
@@ -194,6 +227,16 @@ Tags | Dockerfile | OS Version
 10.0.0-rc.2-alpine3.22-arm32v7, 10.0-alpine3.22-arm32v7, 10.0-alpine-arm32v7, 10.0.0-rc.2-alpine3.22, 10.0-alpine3.22, 10.0-alpine | [Dockerfile](src/aspnet/10.0/alpine3.22/arm32v7/Dockerfile) | Alpine 3.22
 10.0.0-rc.2-alpine3.22-composite-arm32v7, 10.0-alpine3.22-composite-arm32v7, 10.0-alpine-composite-arm32v7, 10.0.0-rc.2-alpine3.22-composite, 10.0-alpine3.22-composite, 10.0-alpine-composite | [Dockerfile](src/aspnet/10.0/alpine3.22-composite/arm32v7/Dockerfile) | Alpine 3.22
 9.0.10-bookworm-slim-arm32v7, 9.0-bookworm-slim-arm32v7, 9.0.10-bookworm-slim, 9.0-bookworm-slim, 9.0.10, 9.0, latest | [Dockerfile](src/aspnet/9.0/bookworm-slim/arm32v7/Dockerfile) | Debian 12
+=======
+10.0.99-noble-arm32v7, 10.0-noble-arm32v7, 10.0.99-noble, 10.0-noble, 10.0.99, 10.0, latest | [Dockerfile](src/aspnet/10.0/noble/arm32v7/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-arm32v7, 10.0-noble-chiseled-arm32v7, 10.0.99-noble-chiseled, 10.0-noble-chiseled | [Dockerfile](src/aspnet/10.0/noble-chiseled/arm32v7/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-extra-arm32v7, 10.0-noble-chiseled-extra-arm32v7, 10.0.99-noble-chiseled-extra, 10.0-noble-chiseled-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-extra/arm32v7/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-composite-arm32v7, 10.0-noble-chiseled-composite-arm32v7, 10.0.99-noble-chiseled-composite, 10.0-noble-chiseled-composite | [Dockerfile](src/aspnet/10.0/noble-chiseled-composite/arm32v7/Dockerfile) | Ubuntu 24.04
+10.0.99-noble-chiseled-composite-extra-arm32v7, 10.0-noble-chiseled-composite-extra-arm32v7, 10.0.99-noble-chiseled-composite-extra, 10.0-noble-chiseled-composite-extra | [Dockerfile](src/aspnet/10.0/noble-chiseled-composite-extra/arm32v7/Dockerfile) | Ubuntu 24.04
+10.0.99-alpine3.22-arm32v7, 10.0-alpine3.22-arm32v7, 10.0-alpine-arm32v7, 10.0.99-alpine3.22, 10.0-alpine3.22, 10.0-alpine | [Dockerfile](src/aspnet/10.0/alpine3.22/arm32v7/Dockerfile) | Alpine 3.22
+10.0.99-alpine3.22-composite-arm32v7, 10.0-alpine3.22-composite-arm32v7, 10.0-alpine-composite-arm32v7, 10.0.99-alpine3.22-composite, 10.0-alpine3.22-composite, 10.0-alpine-composite | [Dockerfile](src/aspnet/10.0/alpine3.22-composite/arm32v7/Dockerfile) | Alpine 3.22
+9.0.10-bookworm-slim-arm32v7, 9.0-bookworm-slim-arm32v7, 9.0.10-bookworm-slim, 9.0-bookworm-slim, 9.0.10, 9.0 | [Dockerfile](src/aspnet/9.0/bookworm-slim/arm32v7/Dockerfile) | Debian 12
+>>>>>>> This commit should cause a merge conflict
 9.0.10-alpine3.21-arm32v7, 9.0-alpine3.21-arm32v7, 9.0.10-alpine3.21, 9.0-alpine3.21 | [Dockerfile](src/aspnet/9.0/alpine3.21/arm32v7/Dockerfile) | Alpine 3.21
 9.0.10-alpine3.21-composite-arm32v7, 9.0-alpine3.21-composite-arm32v7, 9.0.10-alpine3.21-composite, 9.0-alpine3.21-composite | [Dockerfile](src/aspnet/9.0/alpine3.21-composite/arm32v7/Dockerfile) | Alpine 3.21
 9.0.10-alpine3.22-arm32v7, 9.0-alpine3.22-arm32v7, 9.0-alpine-arm32v7, 9.0.10-alpine3.22, 9.0-alpine3.22, 9.0-alpine | [Dockerfile](src/aspnet/9.0/alpine3.22/arm32v7/Dockerfile) | Alpine 3.22
@@ -218,7 +261,11 @@ Tags | Dockerfile | OS Version
 
 Tag | Dockerfile
 ---------| ---------------
+<<<<<<< HEAD
 10.0.0-rc.2-nanoserver-ltsc2025, 10.0-nanoserver-ltsc2025 | [Dockerfile](src/aspnet/10.0/nanoserver-ltsc2025/amd64/Dockerfile)
+=======
+10.0.99-nanoserver-ltsc2025, 10.0-nanoserver-ltsc2025 | [Dockerfile](src/aspnet/10.0/nanoserver-ltsc2025/amd64/Dockerfile)
+>>>>>>> This commit should cause a merge conflict
 9.0.10-nanoserver-ltsc2025, 9.0-nanoserver-ltsc2025 | [Dockerfile](src/aspnet/9.0/nanoserver-ltsc2025/amd64/Dockerfile)
 8.0.21-nanoserver-ltsc2025, 8.0-nanoserver-ltsc2025 | [Dockerfile](src/aspnet/8.0/nanoserver-ltsc2025/amd64/Dockerfile)
 
@@ -226,7 +273,11 @@ Tag | Dockerfile
 
 Tag | Dockerfile
 ---------| ---------------
+<<<<<<< HEAD
 10.0.0-rc.2-windowsservercore-ltsc2025, 10.0-windowsservercore-ltsc2025 | [Dockerfile](src/aspnet/10.0/windowsservercore-ltsc2025/amd64/Dockerfile)
+=======
+10.0.99-windowsservercore-ltsc2025, 10.0-windowsservercore-ltsc2025 | [Dockerfile](src/aspnet/10.0/windowsservercore-ltsc2025/amd64/Dockerfile)
+>>>>>>> This commit should cause a merge conflict
 9.0.10-windowsservercore-ltsc2025, 9.0-windowsservercore-ltsc2025 | [Dockerfile](src/aspnet/9.0/windowsservercore-ltsc2025/amd64/Dockerfile)
 8.0.21-windowsservercore-ltsc2025, 8.0-windowsservercore-ltsc2025 | [Dockerfile](src/aspnet/8.0/windowsservercore-ltsc2025/amd64/Dockerfile)
 
@@ -234,7 +285,11 @@ Tag | Dockerfile
 
 Tag | Dockerfile
 ---------| ---------------
+<<<<<<< HEAD
 10.0.0-rc.2-nanoserver-ltsc2022, 10.0-nanoserver-ltsc2022 | [Dockerfile](src/aspnet/10.0/nanoserver-ltsc2022/amd64/Dockerfile)
+=======
+10.0.99-nanoserver-ltsc2022, 10.0-nanoserver-ltsc2022 | [Dockerfile](src/aspnet/10.0/nanoserver-ltsc2022/amd64/Dockerfile)
+>>>>>>> This commit should cause a merge conflict
 9.0.10-nanoserver-ltsc2022, 9.0-nanoserver-ltsc2022 | [Dockerfile](src/aspnet/9.0/nanoserver-ltsc2022/amd64/Dockerfile)
 8.0.21-nanoserver-ltsc2022, 8.0-nanoserver-ltsc2022 | [Dockerfile](src/aspnet/8.0/nanoserver-ltsc2022/amd64/Dockerfile)
 
@@ -242,7 +297,11 @@ Tag | Dockerfile
 
 Tag | Dockerfile
 ---------| ---------------
+<<<<<<< HEAD
 10.0.0-rc.2-windowsservercore-ltsc2022, 10.0-windowsservercore-ltsc2022 | [Dockerfile](src/aspnet/10.0/windowsservercore-ltsc2022/amd64/Dockerfile)
+=======
+10.0.99-windowsservercore-ltsc2022, 10.0-windowsservercore-ltsc2022 | [Dockerfile](src/aspnet/10.0/windowsservercore-ltsc2022/amd64/Dockerfile)
+>>>>>>> This commit should cause a merge conflict
 9.0.10-windowsservercore-ltsc2022, 9.0-windowsservercore-ltsc2022 | [Dockerfile](src/aspnet/9.0/windowsservercore-ltsc2022/amd64/Dockerfile)
 8.0.21-windowsservercore-ltsc2022, 8.0-windowsservercore-ltsc2022 | [Dockerfile](src/aspnet/8.0/windowsservercore-ltsc2022/amd64/Dockerfile)
 

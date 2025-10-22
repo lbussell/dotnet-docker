@@ -77,7 +77,11 @@
     "dotnet|9.0|base-url|checksums|nightly": "$(dotnet|9.0|base-url|nightly)",
     "dotnet|9.0|aggregate-checksums": "/checksums/$(dotnet|9.0|product-version)-sha.txt",
 
+<<<<<<< HEAD
     "dotnet|10.0|product-version": "10.0.0-rc.2",
+=======
+    "dotnet|10.0|product-version": "10.0.99",
+>>>>>>> This commit should cause a merge conflict
     "dotnet|10.0|fixed-tag": "$(dotnet|10.0|product-version)",
     "dotnet|10.0|minor-tag": "10.0",
     "dotnet|10.0|base-url|main": "$(base-url|public|preview|main)",
