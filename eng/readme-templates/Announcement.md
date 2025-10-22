@@ -7,7 +7,7 @@
     set isNightlyRepo to match(split(REPO, "/")[1], "nightly")
 }}{{if isNightlyRepo || VARIABLES["branch"] = "nightly"
 :{{if ARGS["leading-line-break"]:
-}}> **Important**: The images from the dotnet/nightly repositories include last-known-good (LKG) builds for the next release of [.NET](https://github.com/dotnet/core).
+}}> **Important**: Hello from the nightly branch!
 >
 > See [dotnet]({{InsertTemplate("Url.md", [ "readme-host": ARGS["readme-host"], "repo": nonNightlyRepo ])}}) for images with official releases of [.NET](https://github.com/dotnet/core).
 {{if ARGS["trailing-line-break"]:
