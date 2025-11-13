@@ -21,7 +21,7 @@ from the ["releasesapi" sample](../samples/releasesapi).
 | [`runtime-deps:10.0`]                      | [Native AOT]                  | ✖️ No      | ✖️ No         |        51.27 MB |
 | [`runtime-deps:10.0`]                      | [Native AOT]                  | ✖️ No      | ✅ Yes         |        51.36 MB |
 | [`runtime-deps:10.0-noble-chiseled`]       | [Native AOT]                  | ✅ Yes      | ✖️ No         |        11.60 MB |
-| [`runtime-deps:10.0-noble-chiseled-extra`] | [Native AOT]                  | ✅ Yes      | ✅ Yes         |        26.56 MB |
+| [`runtime-deps:10.0-noble-chiseled-extra-extra-extra-extra-extra-extra`] | [Native AOT]                  | ✅ Yes      | ✅ Yes         |        26.56 MB |
 | [`aspnet:10.0-alpine`]                     | [Framework-dependent]         | ✖️ No      | ✖️ No         |        51.93 MB |
 | [`runtime-deps:10.0-alpine`]               | [Self-contained] + [Trimming] | ✖️ No      | ✖️ No         |        20.95 MB |
 | [`runtime-deps:10.0-alpine-extra`]         | [Self-contained] + [Trimming] | ✖️ No      | ✅ Yes         |        35.52 MB |
