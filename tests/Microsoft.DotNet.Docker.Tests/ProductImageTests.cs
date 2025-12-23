@@ -340,6 +340,16 @@ namespace Microsoft.DotNet.Docker.Tests
                         "openssl",
                         "zlib"
                     ],
+                { OS: var os } when os == OS.Jammy =>
+                    [
+                        "ca-certificates",
+                        "gcc-12-base",
+                        "libc6",
+                        "libgcc-s1",
+                        "libssl3",
+                        "openssl",
+                        "libstdc++6"
+                    ],
                 { OS: var os } when os == OS.Noble =>
                     [
                         "ca-certificates",
