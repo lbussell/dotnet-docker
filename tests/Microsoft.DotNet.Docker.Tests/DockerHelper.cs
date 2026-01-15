@@ -2,35 +2,26 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Xunit.Abstractions;
 
 namespace Microsoft.DotNet.Docker.Tests
 {
-    public class DockerHelper : IDockerCli
+    public class DockerHelper(ITestOutputHelper outputHelper) : IDockerCli
     {
+        private readonly ITestOutputHelper _outputHelper = outputHelper;
+
         private static readonly Lazy<string> s_dockerOS = new(GetDockerOS);
         public static string DockerOS => s_dockerOS.Value;
-
-        public static string ContainerWorkDir => IsLinuxContainerModeEnabled ? "/sandbox" : "c:\\sandbox";
         public static bool IsLinuxContainerModeEnabled => string.Equals(DockerOS, "linux", StringComparison.OrdinalIgnoreCase);
         public static string TestArtifactsDir { get; } = Path.Combine(Directory.GetCurrentDirectory(), "TestAppArtifacts");
 
-        private ITestOutputHelper OutputHelper { get; set; }
-
-        public DockerHelper(ITestOutputHelper outputHelper)
-        {
-            OutputHelper = outputHelper;
-        }
-
-#nullable enable
         public void Build(
             string tag = "",
             string dockerfile = "",
@@ -97,7 +88,6 @@ namespace Microsoft.DotNet.Docker.Tests
 
             Execute($"build {string.Join(' ', args)}");
         }
-#nullable disable
 
         /// <summary>
         /// Builds a helper image intended to test distroless scenarios.
@@ -144,7 +134,12 @@ namespace Microsoft.DotNet.Docker.Tests
 
             string tag = imageData.GetIdentifier("distroless-helper");
 
-            Build(tag, dockerfile, null, TestArtifactsDir, false,
+            Build(
+                tag: tag,
+                dockerfile: dockerfile,
+                target: "",
+                contextDir: TestArtifactsDir,
+                pull: false,
                 platform: imageData.Platform,
                 buildArgs:
                 [
@@ -161,44 +156,11 @@ namespace Microsoft.DotNet.Docker.Tests
 
         public static bool ContainerIsRunning(string name) => ExecuteStatic($"inspect --format=\"{{{{.State.Running}}}}\" {name}") == "true";
 
-        public void Copy(string src, string dest) => Execute($"cp {src} {dest}");
-
-        public void DeleteContainer(string container, bool captureLogs = false)
-        {
-            if (ContainerExists(container))
-            {
-                if (captureLogs)
-                {
-                    Execute($"logs {container}", new DockerCliRunOptions(IgnoreErrors: true));
-                }
-
-                // If a container is already stopped, running `docker stop` again has no adverse effects.
-                // This prevents some issues where containers could fail to be forcibly removed while they're running.
-                // e.g. https://github.com/dotnet/dotnet-docker/issues/5127
-                StopContainer(container);
-
-                Execute($"container rm -f {container}");
-            }
-        }
-
-        public void DeleteImage(string tag)
-        {
-            if (ImageExists(tag))
-            {
-                Execute($"image rm -f {tag}");
-            }
-        }
-
-        private void StopContainer(string container)
-        {
-            if (ContainerExists(container))
-            {
-                Execute($"stop {container}", new DockerCliRunOptions(AutoRetry: true));
-            }
-        }
-
         private static string ExecuteStatic(
-            string args, bool ignoreErrors = false, bool autoRetry = false, ITestOutputHelper outputHelper = null)
+            string args,
+            bool ignoreErrors = false,
+            bool autoRetry = false,
+            ITestOutputHelper? outputHelper = null)
         {
             (Process Process, string StdOut, string StdErr) result;
             if (autoRetry)
@@ -222,24 +184,23 @@ namespace Microsoft.DotNet.Docker.Tests
             return result.StdOut;
         }
 
-        private static (Process Process, string StdOut, string StdErr) ExecuteProcess(
-            string args, ITestOutputHelper outputHelper) => ExecuteHelper.ExecuteProcess("docker", args, outputHelper);
+        private static (Process Process, string StdOut, string StdErr) ExecuteProcess(string args, ITestOutputHelper? outputHelper) =>
+            ExecuteHelper.ExecuteProcess("docker", args, outputHelper);
 
         private string ExecuteWithLogging(string args, bool ignoreErrors = false, bool autoRetry = false)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            OutputHelper.WriteLine($"Executing: docker {args}");
-            string result = ExecuteStatic(args, outputHelper: OutputHelper, ignoreErrors: ignoreErrors, autoRetry: autoRetry);
+            _outputHelper.WriteLine($"Executing: docker {args}");
+            string result = ExecuteStatic(args, outputHelper: _outputHelper, ignoreErrors: ignoreErrors, autoRetry: autoRetry);
 
             stopwatch.Stop();
-            OutputHelper.WriteLine($"Execution Elapsed Time: {stopwatch.Elapsed}");
+            _outputHelper.WriteLine($"Execution Elapsed Time: {stopwatch.Elapsed}");
 
             return result;
         }
 
-        #nullable enable
         public string Execute(string args, DockerCliRunOptions? options = null)
         {
             options ??= new DockerCliRunOptions();
@@ -252,12 +213,11 @@ namespace Microsoft.DotNet.Docker.Tests
                 return ExecuteStatic(args, ignoreErrors: options.IgnoreErrors, autoRetry: options.AutoRetry);
             }
         }
-        #nullable disable
 
         private static (Process Process, string StdOut, string StdErr) ExecuteWithRetry(
             string args,
-            ITestOutputHelper outputHelper,
-            Func<string, ITestOutputHelper, (Process Process, string StdOut, string StdErr)> executor)
+            ITestOutputHelper? outputHelper,
+            Func<string, ITestOutputHelper?, (Process Process, string StdOut, string StdErr)> executor)
         {
             const int maxRetries = 5;
             const int waitFactor = 5;
@@ -288,123 +248,12 @@ namespace Microsoft.DotNet.Docker.Tests
 
         private static string GetDockerOS() => ExecuteStatic("version -f \"{{ .Server.Os }}\"");
 
-        public string GetImageUser(string image) => Execute($"inspect -f \"{{{{ .Config.User }}}}\" {image}");
-
-        public IDictionary<string, string> GetEnvironmentVariables(string image)
-        {
-            string envVarsStr = Execute($"inspect -f \"{{{{json .Config.Env }}}}\" {image}");
-            JArray envVarsArray = (JArray)JsonConvert.DeserializeObject(envVarsStr);
-            return envVarsArray
-                .ToDictionary(
-                    item => item.ToString().Split('=')[0],
-                    item => item.ToString().Split('=')[1]);
-        }
-
-        public string GetContainerAddress(string container)
-        {
-            string containerAddress = Execute("inspect -f \"{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\" " + container);
-            if (string.IsNullOrWhiteSpace(containerAddress))
-            {
-                containerAddress = Execute("inspect -f \"{{.NetworkSettings.Networks.nat.IPAddress }}\" " + container);
-            }
-
-            return containerAddress;
-        }
-
-        public string GetContainerHostPort(string container, int containerPort = 80) =>
-            Execute(
-                $"inspect -f \"{{{{(index (index .NetworkSettings.Ports \\\"{containerPort}/tcp\\\") 0).HostPort}}}}\" {container}");
-
-        public string GetContainerWorkPath(string relativePath)
-        {
-            string separator = IsLinuxContainerModeEnabled ? "/" : "\\";
-            return $"{ContainerWorkDir}{separator}{relativePath}";
-        }
-
         public static bool ImageExists(string tag) => ResourceExists("image", tag);
-
-        public void Pull(string image) => Execute($"pull {image}", new DockerCliRunOptions(AutoRetry: true));
-
-        /// <summary>
-        /// Pulls an image from DockerHub, optionally redirecting it through a
-        /// cache registry.
-        /// </summary>
-        /// <param name="image">
-        /// The image to pull, in the format "repo:tag". Since the image is
-        /// assumed to be from DockerHub, do not include a registry.
-        /// </param>
-        /// <returns>
-        /// A tag for the image that was pulled. Use this value to refer to the
-        /// image in subsequent operations. Do not use the original value of
-        /// <paramref name="image"/>.
-        /// </returns>
-        public string PullDockerHubImage(string image)
-        {
-            if (!string.IsNullOrEmpty(Config.CacheRegistry))
-            {
-                image = $"{Config.CacheRegistry}/{image}";
-            }
-
-            Pull(image);
-            return image;
-        }
-
-        public string GetHistory(string image) =>
-            Execute($"history --no-trunc --format \"{{{{ .CreatedBy }}}}\" {image}");
 
         private static bool ResourceExists(string type, string filterArg)
         {
             string output = ExecuteStatic($"{type} ls -a -q {filterArg}", ignoreErrors: true);
             return output != "";
-        }
-
-        public string Run(
-            string image,
-            string name,
-            string command = null,
-            string workdir = null,
-            string optionalRunArgs = null,
-            bool detach = false,
-            string runAsUser = null,
-            bool skipAutoCleanup = false,
-            bool useMountedDockerSocket = false,
-            bool silenceOutput = false,
-            bool tty = true)
-        {
-            string cleanupArg = skipAutoCleanup ? string.Empty : " --rm";
-            string detachArg = detach ? " -d" : string.Empty;
-            string ttyArg = detach && tty ? " -t" : string.Empty;
-            string userArg = runAsUser != null ? $" -u {runAsUser}" : string.Empty;
-            string workdirArg = workdir == null ? string.Empty : $" -w {workdir}";
-            string mountedDockerSocketArg = useMountedDockerSocket ? " -v /var/run/docker.sock:/var/run/docker.sock" : string.Empty;
-            return Execute(
-                $"run --name {name}{cleanupArg}{workdirArg}{userArg}{detachArg}{ttyArg}{mountedDockerSocketArg} {optionalRunArgs} {image} {command}",
-                new DockerCliRunOptions(LogOutput: !silenceOutput));
-        }
-
-        /// <summary>
-        /// Creates a file system volume that is backed by memory instead of disk.
-        /// </summary>
-        public string CreateTmpfsVolume(string name, int? ownerUid = null)
-        {
-            // Create volume using the local driver (the default driver),
-            // which accepts options similar to the 'mount' command.
-            //
-            // Additional options are specified to:
-            // - make this volume an in-memory file system with a unique device name (type=tmpfs, device={guid}}).
-            // - to set the owner of the root of the file system (o=uid=101).
-            string optionalArgs = string.Empty;
-            if (ownerUid.HasValue)
-            {
-                optionalArgs += $" --opt o=uid={ownerUid.Value}";
-            }
-            string device = Guid.NewGuid().ToString("D");
-            return Execute($"volume create --opt type=tmpfs --opt device={device}{optionalArgs} {name}");
-        }
-
-        public string DeleteVolume(string name)
-        {
-            return Execute($"volume remove {name}");
         }
     }
 }
