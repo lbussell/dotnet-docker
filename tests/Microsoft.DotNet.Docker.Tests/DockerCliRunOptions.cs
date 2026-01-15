@@ -2,11 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-#nullable enable
-
 namespace Microsoft.DotNet.Docker.Tests;
 
-public interface IDockerCli
-{
-    string Execute(string args, DockerCliRunOptions? options = null);
-}
+public record DockerCliRunOptions(
+    bool IgnoreErrors = false,
+    bool AutoRetry = false,
+    bool LogOutput = true);

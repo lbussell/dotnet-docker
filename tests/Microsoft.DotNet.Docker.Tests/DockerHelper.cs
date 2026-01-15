@@ -14,7 +14,7 @@ using Xunit.Abstractions;
 
 namespace Microsoft.DotNet.Docker.Tests
 {
-    public class DockerHelper
+    public class DockerHelper : IDockerCli
     {
         private static readonly Lazy<string> s_dockerOS = new(GetDockerOS);
         public static string DockerOS => s_dockerOS.Value;
@@ -30,7 +30,7 @@ namespace Microsoft.DotNet.Docker.Tests
             OutputHelper = outputHelper;
         }
 
-        #nullable enable
+#nullable enable
         public void Build(
             string tag = "",
             string dockerfile = "",
@@ -95,9 +95,9 @@ namespace Microsoft.DotNet.Docker.Tests
 
             args.Add(contextDir);
 
-            ExecuteWithLogging($"build {string.Join(' ', args)}");
+            Execute($"build {string.Join(' ', args)}");
         }
-        #nullable disable
+#nullable disable
 
         /// <summary>
         /// Builds a helper image intended to test distroless scenarios.
@@ -159,9 +159,9 @@ namespace Microsoft.DotNet.Docker.Tests
 
         public static bool ContainerExists(string name) => ResourceExists("container", $"-f \"name={name}\"");
 
-        public static bool ContainerIsRunning(string name) => Execute($"inspect --format=\"{{{{.State.Running}}}}\" {name}") == "true";
+        public static bool ContainerIsRunning(string name) => ExecuteStatic($"inspect --format=\"{{{{.State.Running}}}}\" {name}") == "true";
 
-        public void Copy(string src, string dest) => ExecuteWithLogging($"cp {src} {dest}");
+        public void Copy(string src, string dest) => Execute($"cp {src} {dest}");
 
         public void DeleteContainer(string container, bool captureLogs = false)
         {
@@ -169,7 +169,7 @@ namespace Microsoft.DotNet.Docker.Tests
             {
                 if (captureLogs)
                 {
-                    ExecuteWithLogging($"logs {container}", ignoreErrors: true);
+                    Execute($"logs {container}", new DockerCliRunOptions(IgnoreErrors: true));
                 }
 
                 // If a container is already stopped, running `docker stop` again has no adverse effects.
@@ -177,7 +177,7 @@ namespace Microsoft.DotNet.Docker.Tests
                 // e.g. https://github.com/dotnet/dotnet-docker/issues/5127
                 StopContainer(container);
 
-                ExecuteWithLogging($"container rm -f {container}");
+                Execute($"container rm -f {container}");
             }
         }
 
@@ -185,7 +185,7 @@ namespace Microsoft.DotNet.Docker.Tests
         {
             if (ImageExists(tag))
             {
-                ExecuteWithLogging($"image rm -f {tag}");
+                Execute($"image rm -f {tag}");
             }
         }
 
@@ -193,11 +193,11 @@ namespace Microsoft.DotNet.Docker.Tests
         {
             if (ContainerExists(container))
             {
-                ExecuteWithLogging($"stop {container}", autoRetry: true);
+                Execute($"stop {container}", new DockerCliRunOptions(AutoRetry: true));
             }
         }
 
-        private static string Execute(
+        private static string ExecuteStatic(
             string args, bool ignoreErrors = false, bool autoRetry = false, ITestOutputHelper outputHelper = null)
         {
             (Process Process, string StdOut, string StdErr) result;
@@ -231,13 +231,28 @@ namespace Microsoft.DotNet.Docker.Tests
             stopwatch.Start();
 
             OutputHelper.WriteLine($"Executing: docker {args}");
-            string result = Execute(args, outputHelper: OutputHelper, ignoreErrors: ignoreErrors, autoRetry: autoRetry);
+            string result = ExecuteStatic(args, outputHelper: OutputHelper, ignoreErrors: ignoreErrors, autoRetry: autoRetry);
 
             stopwatch.Stop();
             OutputHelper.WriteLine($"Execution Elapsed Time: {stopwatch.Elapsed}");
 
             return result;
         }
+
+        #nullable enable
+        public string Execute(string args, DockerCliRunOptions? options = null)
+        {
+            options ??= new DockerCliRunOptions();
+            if (options.LogOutput)
+            {
+                return ExecuteWithLogging(args, ignoreErrors: options.IgnoreErrors, autoRetry: options.AutoRetry);
+            }
+            else
+            {
+                return ExecuteStatic(args, ignoreErrors: options.IgnoreErrors, autoRetry: options.AutoRetry);
+            }
+        }
+        #nullable disable
 
         private static (Process Process, string StdOut, string StdErr) ExecuteWithRetry(
             string args,
@@ -271,13 +286,13 @@ namespace Microsoft.DotNet.Docker.Tests
             return result;
         }
 
-        private static string GetDockerOS() => Execute("version -f \"{{ .Server.Os }}\"");
+        private static string GetDockerOS() => ExecuteStatic("version -f \"{{ .Server.Os }}\"");
 
-        public string GetImageUser(string image) => ExecuteWithLogging($"inspect -f \"{{{{ .Config.User }}}}\" {image}");
+        public string GetImageUser(string image) => Execute($"inspect -f \"{{{{ .Config.User }}}}\" {image}");
 
         public IDictionary<string, string> GetEnvironmentVariables(string image)
         {
-            string envVarsStr = ExecuteWithLogging($"inspect -f \"{{{{json .Config.Env }}}}\" {image}");
+            string envVarsStr = Execute($"inspect -f \"{{{{json .Config.Env }}}}\" {image}");
             JArray envVarsArray = (JArray)JsonConvert.DeserializeObject(envVarsStr);
             return envVarsArray
                 .ToDictionary(
@@ -287,16 +302,17 @@ namespace Microsoft.DotNet.Docker.Tests
 
         public string GetContainerAddress(string container)
         {
-            string containerAddress = ExecuteWithLogging("inspect -f \"{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\" " + container);
-            if (string.IsNullOrWhiteSpace(containerAddress)){
-                containerAddress = ExecuteWithLogging("inspect -f \"{{.NetworkSettings.Networks.nat.IPAddress }}\" " + container);
+            string containerAddress = Execute("inspect -f \"{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\" " + container);
+            if (string.IsNullOrWhiteSpace(containerAddress))
+            {
+                containerAddress = Execute("inspect -f \"{{.NetworkSettings.Networks.nat.IPAddress }}\" " + container);
             }
 
             return containerAddress;
         }
 
         public string GetContainerHostPort(string container, int containerPort = 80) =>
-            ExecuteWithLogging(
+            Execute(
                 $"inspect -f \"{{{{(index (index .NetworkSettings.Ports \\\"{containerPort}/tcp\\\") 0).HostPort}}}}\" {container}");
 
         public string GetContainerWorkPath(string relativePath)
@@ -307,7 +323,7 @@ namespace Microsoft.DotNet.Docker.Tests
 
         public static bool ImageExists(string tag) => ResourceExists("image", tag);
 
-        public void Pull(string image) => ExecuteWithLogging($"pull {image}", autoRetry: true);
+        public void Pull(string image) => Execute($"pull {image}", new DockerCliRunOptions(AutoRetry: true));
 
         /// <summary>
         /// Pulls an image from DockerHub, optionally redirecting it through a
@@ -334,11 +350,11 @@ namespace Microsoft.DotNet.Docker.Tests
         }
 
         public string GetHistory(string image) =>
-            ExecuteWithLogging($"history --no-trunc --format \"{{{{ .CreatedBy }}}}\" {image}");
+            Execute($"history --no-trunc --format \"{{{{ .CreatedBy }}}}\" {image}");
 
         private static bool ResourceExists(string type, string filterArg)
         {
-            string output = Execute($"{type} ls -a -q {filterArg}", true);
+            string output = ExecuteStatic($"{type} ls -a -q {filterArg}", ignoreErrors: true);
             return output != "";
         }
 
@@ -361,13 +377,9 @@ namespace Microsoft.DotNet.Docker.Tests
             string userArg = runAsUser != null ? $" -u {runAsUser}" : string.Empty;
             string workdirArg = workdir == null ? string.Empty : $" -w {workdir}";
             string mountedDockerSocketArg = useMountedDockerSocket ? " -v /var/run/docker.sock:/var/run/docker.sock" : string.Empty;
-            if (silenceOutput)
-            {
-                return Execute(
-                    $"run --name {name}{cleanupArg}{workdirArg}{userArg}{detachArg}{ttyArg}{mountedDockerSocketArg} {optionalRunArgs} {image} {command}");
-            }
-            return ExecuteWithLogging(
-                $"run --name {name}{cleanupArg}{workdirArg}{userArg}{detachArg}{ttyArg}{mountedDockerSocketArg} {optionalRunArgs} {image} {command}");
+            return Execute(
+                $"run --name {name}{cleanupArg}{workdirArg}{userArg}{detachArg}{ttyArg}{mountedDockerSocketArg} {optionalRunArgs} {image} {command}",
+                new DockerCliRunOptions(LogOutput: !silenceOutput));
         }
 
         /// <summary>
@@ -387,12 +399,12 @@ namespace Microsoft.DotNet.Docker.Tests
                 optionalArgs += $" --opt o=uid={ownerUid.Value}";
             }
             string device = Guid.NewGuid().ToString("D");
-            return ExecuteWithLogging($"volume create --opt type=tmpfs --opt device={device}{optionalArgs} {name}");
+            return Execute($"volume create --opt type=tmpfs --opt device={device}{optionalArgs} {name}");
         }
 
         public string DeleteVolume(string name)
         {
-            return ExecuteWithLogging($"volume remove {name}");
+            return Execute($"volume remove {name}");
         }
     }
 }
