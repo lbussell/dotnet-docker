@@ -9,4 +9,14 @@ namespace Microsoft.DotNet.Docker.Tests;
 public interface IDockerCli
 {
     string Execute(string args, DockerCliRunOptions? options = null);
+
+    void Build(
+        string tag = "",
+        string dockerfile = "",
+        string target = "",
+        string contextDir = ".",
+        bool pull = false,
+        string platform = "",
+        string output = "",
+        params string[] buildArgs);
 }

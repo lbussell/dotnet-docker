@@ -15,7 +15,7 @@ namespace Microsoft.DotNet.Docker.Tests
 
         public string DockerfileSuffix { get; set; }
 
-        public string GetImage(SampleImageType imageType, DockerHelper dockerHelper, bool allowPull = false)
+        public string GetImage(SampleImageType imageType, IDockerCli docker, bool allowPull = false)
         {
             string tagPrefix = GetTagNameBase(imageType);
             string os = OS;
@@ -26,16 +26,16 @@ namespace Microsoft.DotNet.Docker.Tests
                 tag += "-local";
             }
 
-            return GetImage(tag, dockerHelper, allowPull);
+            return GetImage(tag, docker, allowPull);
         }
 
-        public string GetImage(string tag, DockerHelper dockerHelper, bool allowPull = false)
+        public string GetImage(string tag, IDockerCli docker, bool allowPull = false)
         {
             string imageName = GetImageName(tag);
 
             if (IsPublished)
             {
-                PullImageIfNecessary(imageName, dockerHelper, allowPull);
+                PullImageIfNecessary(imageName, docker, allowPull);
             }
 
             return imageName;

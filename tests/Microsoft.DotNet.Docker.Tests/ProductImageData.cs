@@ -119,7 +119,7 @@ namespace Microsoft.DotNet.Docker.Tests
             return string.Join('-', imageVariants);
         }
 
-        public string GetImage(DotNetImageRepo imageRepo, DockerHelper dockerHelper, bool skipPull = false)
+        public string GetImage(DotNetImageRepo imageRepo, IDockerCli docker, bool skipPull = false)
         {
             // ASP.NET composite includes its own runtime that we want to test.
             if (ImageVariant.HasFlag(DotNetImageVariant.Composite) && imageRepo == DotNetImageRepo.Runtime)
@@ -139,36 +139,36 @@ namespace Microsoft.DotNet.Docker.Tests
             if (!skipPull)
             {
                 // Pull the image to ensure it exists
-                PullImageIfNecessary(imageName, dockerHelper);
+                PullImageIfNecessary(imageName, docker);
             }
 
             return imageName;
         }
 
-        public string GetProductVersion(DotNetImageRepo imageRepoToUse, DotNetImageRepo productVersionRepo, DockerHelper dockerHelper)
+        public string GetProductVersion(DotNetImageRepo imageRepoToUse, DotNetImageRepo productVersionRepo, IDockerCli docker)
         {
-            string imageName = GetImage(imageRepoToUse, dockerHelper);
-            return GetProductVersion(imageName, productVersionRepo, dockerHelper);
+            string imageName = GetImage(imageRepoToUse, docker);
+            return GetProductVersion(imageName, productVersionRepo, docker);
         }
 
-        public string GetProductVersion(string imageName, DotNetImageRepo productVersionRepo, DockerHelper dockerHelper)
+        public string GetProductVersion(string imageName, DotNetImageRepo productVersionRepo, IDockerCli docker)
         {
             string containerName = GetIdentifier($"GetProductVersion-{productVersionRepo}");
 
             return productVersionRepo switch
             {
-                DotNetImageRepo.SDK => dockerHelper.Run(imageName, containerName, "dotnet --version"),
-                DotNetImageRepo.Runtime => GetRuntimeVersion(imageName, containerName, "Microsoft.NETCore.App", dockerHelper),
-                DotNetImageRepo.Aspnet => GetRuntimeVersion(imageName, containerName, "Microsoft.AspNetCore.App", dockerHelper),
+                DotNetImageRepo.SDK => docker.Run(imageName, containerName, "dotnet --version"),
+                DotNetImageRepo.Runtime => GetRuntimeVersion(imageName, containerName, "Microsoft.NETCore.App", docker),
+                DotNetImageRepo.Aspnet => GetRuntimeVersion(imageName, containerName, "Microsoft.AspNetCore.App", docker),
                 _ => throw new NotSupportedException($"Unsupported image type '{productVersionRepo}'"),
             };
         }
 
-        private string GetRuntimeVersion(string imageName, string containerName, string runtimeName, DockerHelper dockerHelper)
+        private string GetRuntimeVersion(string imageName, string containerName, string runtimeName, IDockerCli docker)
         {
             const string versionGroupName = "Version";
 
-            string runtimeListing = dockerHelper.Run(imageName, containerName, FormatDotnetCommand("--list-runtimes"));
+            string runtimeListing = docker.Run(imageName, containerName, FormatDotnetCommand("--list-runtimes"));
             Regex versionRegex = new Regex($"{runtimeName} (?<{versionGroupName}>[^\\s]+) ");
             Match match = versionRegex.Match(runtimeListing);
             return match.Success ? match.Groups[versionGroupName].Value : string.Empty;

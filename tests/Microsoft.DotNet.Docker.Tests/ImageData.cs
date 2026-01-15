@@ -119,11 +119,11 @@ namespace Microsoft.DotNet.Docker.Tests
 
         public static string GenerateContainerName(string prefix) => $"{prefix}-{DateTime.Now.ToFileTime()}";
 
-        protected void PullImageIfNecessary(string imageName, DockerHelper dockerHelper, bool allowPull = false)
+        protected void PullImageIfNecessary(string imageName, IDockerCli docker, bool allowPull = false)
         {
             if ((Config.PullImages || allowPull) && !_pulledImages.Contains(imageName))
             {
-                dockerHelper.Pull(imageName);
+                docker.Pull(imageName);
                 _pulledImages.Add(imageName);
             }
             else
