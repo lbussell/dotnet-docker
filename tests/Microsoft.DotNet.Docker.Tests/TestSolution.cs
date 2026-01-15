@@ -54,7 +54,7 @@ public class TestSolution : IDisposable
             CreateProjectWithSdkImage(appType, Path.Combine(solutionDir, "app"), appProjectContainerName);
 
             CreateProjectWithSdkImage("xunit", _testProjectDir, testProjectContainerName);
-            File.Copy(Path.Combine(DockerHelper.TestArtifactsDir, "UnitTests.cs"), Path.Combine(_testProjectDir, "UnitTests.cs"));
+            File.Copy(Path.Combine(Config.TestArtifactsDir, "UnitTests.cs"), Path.Combine(_testProjectDir, "UnitTests.cs"));
 
             string nuGetConfigFileName = "NuGet.config";
             if (Config.IsInternal)
@@ -67,10 +67,10 @@ public class TestSolution : IDisposable
             }
 
             File.Copy(
-                Path.Combine(DockerHelper.TestArtifactsDir, nuGetConfigFileName),
+                Path.Combine(Config.TestArtifactsDir, nuGetConfigFileName),
                 Path.Combine(solutionDir, "NuGet.config"));
 
-            File.Copy(Path.Combine(DockerHelper.TestArtifactsDir, ".dockerignore"), Path.Combine(solutionDir, ".dockerignore"));
+            File.Copy(Path.Combine(Config.TestArtifactsDir, ".dockerignore"), Path.Combine(solutionDir, ".dockerignore"));
         }
         catch (Exception)
         {

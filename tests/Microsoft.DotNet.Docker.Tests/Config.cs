@@ -42,6 +42,9 @@ namespace Microsoft.DotNet.Docker.Tests
             Environment.GetEnvironmentVariable("DOCKERFILE_PATHS")?
                 .Split(',', StringSplitOptions.RemoveEmptyEntries) ?? [];
 
+        public static string TestArtifactsDir { get; } =
+            Path.Combine(Directory.GetCurrentDirectory(), "TestAppArtifacts");
+
         public static bool IsInternal { get; } =
             !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("INTERNAL_TESTING"));
 

@@ -253,8 +253,8 @@ namespace Microsoft.DotNet.Docker.Tests
 
             DockerHelper.Build(
                 tag: tag,
-                dockerfile: Path.Combine(DockerHelper.TestArtifactsDir, "Dockerfile.copy"),
-                contextDir: DockerHelper.TestArtifactsDir,
+                dockerfile: Path.Combine(Config.TestArtifactsDir, "Dockerfile.copy"),
+                contextDir: Config.TestArtifactsDir,
                 platform: imageData.Platform,
                 buildArgs:
                 [

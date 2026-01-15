@@ -20,7 +20,6 @@ namespace Microsoft.DotNet.Docker.Tests
         private static readonly Lazy<string> s_dockerOS = new(ExecuteStatic("version -f \"{{ .Server.Os }}\""));
         public static string DockerOS => s_dockerOS.Value;
         public static bool IsLinuxContainerModeEnabled => string.Equals(DockerOS, "linux", StringComparison.OrdinalIgnoreCase);
-        public static string TestArtifactsDir { get; } = Path.Combine(Directory.GetCurrentDirectory(), "TestAppArtifacts");
 
         public void Build(
             string tag = "",
@@ -99,7 +98,7 @@ namespace Microsoft.DotNet.Docker.Tests
         /// </remarks>
         public string BuildDistrolessHelper(DotNetImageRepo imageRepo, ProductImageData imageData, string copyDestination, string copyOrigin = "/")
         {
-            string dockerfile = Path.Combine(TestArtifactsDir, "Dockerfile.copy");
+            string dockerfile = Path.Combine(Config.TestArtifactsDir, "Dockerfile.copy");
             string distrolessImageTag = imageData.GetImage(imageRepo, this);
 
             // Use the runtime-deps image as the target of the filesystem copy.
@@ -138,7 +137,7 @@ namespace Microsoft.DotNet.Docker.Tests
                 tag: tag,
                 dockerfile: dockerfile,
                 target: "",
-                contextDir: TestArtifactsDir,
+                contextDir: Config.TestArtifactsDir,
                 pull: false,
                 platform: imageData.Platform,
                 buildArgs:

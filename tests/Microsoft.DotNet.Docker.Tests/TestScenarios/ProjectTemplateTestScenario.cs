@@ -46,7 +46,7 @@ public abstract class ProjectTemplateTestScenario : ITestScenario
     private string Build(TestSolution testSolution, string stageTarget, string[]? customBuildArgs)
     {
         const string DockerfileName = "Dockerfile";
-        string dockerfilePath = Path.Combine(DockerHelper.TestArtifactsDir, DockerfileName);
+        string dockerfilePath = Path.Combine(Config.TestArtifactsDir, DockerfileName);
         File.WriteAllText(dockerfilePath, Dockerfile.Content);
 
         string tag = ImageData.GetIdentifier(stageTarget);

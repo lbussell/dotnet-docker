@@ -42,10 +42,10 @@ public sealed class NlsScenario : ITestScenario, IDisposable
         // Setup project in temp dir
         string dockerfilePath = Path.Combine(_tempFolderContext.Path, "Dockerfile");
         File.Copy(
-            sourceFileName: Path.Combine(DockerHelper.TestArtifactsDir, DockerfileName),
+            sourceFileName: Path.Combine(Config.TestArtifactsDir, DockerfileName),
             destFileName: dockerfilePath);
         File.Copy(
-            sourceFileName: Path.Combine(DockerHelper.TestArtifactsDir, TestSourceFileName),
+            sourceFileName: Path.Combine(Config.TestArtifactsDir, TestSourceFileName),
             destFileName: Path.Combine(_tempFolderContext.Path, TestSourceFileName));
 
         string sdkImage = _imageData.GetImage(DotNetImageRepo.SDK, _dockerHelper);

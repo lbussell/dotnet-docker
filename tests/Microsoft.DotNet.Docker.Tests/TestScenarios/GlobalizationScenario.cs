@@ -50,7 +50,7 @@ public sealed class GlobalizationScenario : ITestScenario, IDisposable
         await File.WriteAllTextAsync(path: dockerfilePath, contents: Dockerfile);
 
         File.Copy(
-            sourceFileName: Path.Combine(DockerHelper.TestArtifactsDir, "GlobalizationTest.cs"),
+            sourceFileName: Path.Combine(Config.TestArtifactsDir, "GlobalizationTest.cs"),
             destFileName: Path.Combine(_tempFolderContext.Path, "Program.cs"));
 
         string tag = nameof(GlobalizationScenario).ToLowerInvariant();
