@@ -17,7 +17,7 @@ namespace Microsoft.DotNet.Docker.Tests
     {
         private readonly ITestOutputHelper _outputHelper = outputHelper;
 
-        private static readonly Lazy<string> s_dockerOS = new(GetDockerOS);
+        private static readonly Lazy<string> s_dockerOS = new(ExecuteStatic("version -f \"{{ .Server.Os }}\""));
         public static string DockerOS => s_dockerOS.Value;
         public static bool IsLinuxContainerModeEnabled => string.Equals(DockerOS, "linux", StringComparison.OrdinalIgnoreCase);
         public static string TestArtifactsDir { get; } = Path.Combine(Directory.GetCurrentDirectory(), "TestAppArtifacts");
@@ -152,9 +152,44 @@ namespace Microsoft.DotNet.Docker.Tests
             return tag;
         }
 
+        public string Execute(string args, DockerCliRunOptions? options = null)
+        {
+            options ??= new DockerCliRunOptions();
+            if (options.LogOutput)
+            {
+                return ExecuteWithLogging(args, ignoreErrors: options.IgnoreErrors, autoRetry: options.AutoRetry);
+            }
+            else
+            {
+                return ExecuteStatic(args, ignoreErrors: options.IgnoreErrors, autoRetry: options.AutoRetry);
+            }
+        }
+
+        private string ExecuteWithLogging(string args, bool ignoreErrors = false, bool autoRetry = false)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            _outputHelper.WriteLine($"Executing: docker {args}");
+            string result = ExecuteStatic(args, outputHelper: _outputHelper, ignoreErrors: ignoreErrors, autoRetry: autoRetry);
+
+            stopwatch.Stop();
+            _outputHelper.WriteLine($"Execution Elapsed Time: {stopwatch.Elapsed}");
+
+            return result;
+        }
+
+        public static bool ImageExists(string tag) => ResourceExists("image", tag);
+
         public static bool ContainerExists(string name) => ResourceExists("container", $"-f \"name={name}\"");
 
         public static bool ContainerIsRunning(string name) => ExecuteStatic($"inspect --format=\"{{{{.State.Running}}}}\" {name}") == "true";
+
+        private static bool ResourceExists(string type, string filterArg)
+        {
+            string output = ExecuteStatic($"{type} ls -a -q {filterArg}", ignoreErrors: true);
+            return output != "";
+        }
 
         private static string ExecuteStatic(
             string args,
@@ -182,36 +217,6 @@ namespace Microsoft.DotNet.Docker.Tests
             }
 
             return result.StdOut;
-        }
-
-        private static (Process Process, string StdOut, string StdErr) ExecuteProcess(string args, ITestOutputHelper? outputHelper) =>
-            ExecuteHelper.ExecuteProcess("docker", args, outputHelper);
-
-        private string ExecuteWithLogging(string args, bool ignoreErrors = false, bool autoRetry = false)
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            _outputHelper.WriteLine($"Executing: docker {args}");
-            string result = ExecuteStatic(args, outputHelper: _outputHelper, ignoreErrors: ignoreErrors, autoRetry: autoRetry);
-
-            stopwatch.Stop();
-            _outputHelper.WriteLine($"Execution Elapsed Time: {stopwatch.Elapsed}");
-
-            return result;
-        }
-
-        public string Execute(string args, DockerCliRunOptions? options = null)
-        {
-            options ??= new DockerCliRunOptions();
-            if (options.LogOutput)
-            {
-                return ExecuteWithLogging(args, ignoreErrors: options.IgnoreErrors, autoRetry: options.AutoRetry);
-            }
-            else
-            {
-                return ExecuteStatic(args, ignoreErrors: options.IgnoreErrors, autoRetry: options.AutoRetry);
-            }
         }
 
         private static (Process Process, string StdOut, string StdErr) ExecuteWithRetry(
@@ -246,14 +251,7 @@ namespace Microsoft.DotNet.Docker.Tests
             return result;
         }
 
-        private static string GetDockerOS() => ExecuteStatic("version -f \"{{ .Server.Os }}\"");
-
-        public static bool ImageExists(string tag) => ResourceExists("image", tag);
-
-        private static bool ResourceExists(string type, string filterArg)
-        {
-            string output = ExecuteStatic($"{type} ls -a -q {filterArg}", ignoreErrors: true);
-            return output != "";
-        }
+        private static (Process Process, string StdOut, string StdErr) ExecuteProcess(string args, ITestOutputHelper? outputHelper) =>
+            ExecuteHelper.ExecuteProcess("docker", args, outputHelper);
     }
 }
