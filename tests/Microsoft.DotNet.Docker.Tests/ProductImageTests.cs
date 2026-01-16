@@ -22,8 +22,10 @@ namespace Microsoft.DotNet.Docker.Tests
             DockerHelper = new DockerHelper(outputHelper);
             OutputHelper = outputHelper;
             SyftHelper = new SyftHelper(DockerHelper, OutputHelper);
+            DockerCli = new TrackingDockerCli(DockerHelper);
         }
 
+        protected IDockerCli DockerCli { get; }
         protected DockerHelper DockerHelper { get; }
         protected ITestOutputHelper OutputHelper { get; }
         protected SyftHelper SyftHelper { get; }
