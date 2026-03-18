@@ -1,1 +1,0 @@
-{{InsertTemplate("Dockerfile.linux-composite", [ "is-extra": "true" ])}}

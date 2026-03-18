@@ -1,6 +1,0 @@
-steps:
-- task: UseDotNet@2
-  displayName: Install .NET SDK
-  inputs:
-    packageType: "sdk"
-    version: "9.x"

@@ -1,1 +1,0 @@
-This image contains an implementation of YARP, a reverse proxy framework in .NET.
