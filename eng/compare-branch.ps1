@@ -38,11 +38,13 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
+# Show the full diff for a single file
 if ($File) {
     git --no-pager diff --src-prefix "${RemoteBranch}:" --dst-prefix 'working-tree:' $RemoteBranch -- $File
     exit $LASTEXITCODE
 }
 
+# Find the common ancestor and list changed files between it and the working tree
 $mergeBase = git merge-base HEAD $RemoteBranch
 $diffArgs = @('diff', '--name-status', $mergeBase)
 
@@ -53,6 +55,7 @@ if (-not $changes) {
     exit 0
 }
 
+# Print the changed file list with a summary
 Write-Host "Changed files (working tree vs $RemoteBranch):"
 Write-Host ""
 
