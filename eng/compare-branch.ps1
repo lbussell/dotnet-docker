@@ -1,36 +1,34 @@
 #!/usr/bin/env pwsh
 
-<#
-.SYNOPSIS
-    Compares the working tree to a remote branch and shows which files have changed.
-
-.PARAMETER RemoteBranch
-    The remote branch to compare against (e.g., 'origin/main'). Defaults to the upstream tracking branch.
-
-.PARAMETER File
-    Optional file path. When specified, shows the full diff for that file instead of the file list.
-
-.EXAMPLE
-    ./eng/compare-branch.ps1
-    ./eng/compare-branch.ps1 -RemoteBranch origin/main
-    ./eng/compare-branch.ps1 -RemoteBranch upstream/nightly -File eng/compare-branch.ps1
-#>
-
 param(
     [string]$RemoteBranch,
-    [string]$File
+    [string]$File,
+    [Alias('h')]
+    [switch]$Help
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+if ($Help) {
+    $scriptName = $MyInvocation.MyCommand.Name
+    Write-Host "Compare the working tree to a remote branch."
+    Write-Host ""
+    Write-Host "Usage: $scriptName <branch> [<file>] [-Help]"
+    Write-Host ""
+    Write-Host "Arguments:"
+    Write-Host "  <branch>  Remote branch to compare against (required)"
+    Write-Host "  <file>    Show the full diff for a specific file"
+    Write-Host ""
+    Write-Host "Examples:"
+    Write-Host "  $scriptName upstream/main                        List changed files vs upstream/main"
+    Write-Host "  $scriptName upstream/nightly eng/some-file.ps1   Show diff for a specific file"
+    exit 0
+}
+
 if (-not $RemoteBranch) {
-    # Detect the upstream tracking branch
-    $RemoteBranch = git rev-parse --abbrev-ref '@{upstream}' 2>$null
-    if (-not $RemoteBranch) {
-        Write-Error "No remote branch specified and no upstream tracking branch configured. Use -RemoteBranch to specify one."
-        exit 1
-    }
+    Write-Error "No remote branch specified. Usage: $($MyInvocation.MyCommand.Name) <branch> [<file>]"
+    exit 1
 }
 
 # Verify the remote branch exists
@@ -64,4 +62,4 @@ foreach ($line in $changes) {
 
 Write-Host ""
 Write-Host "Total: $($changes.Count) file(s) changed."
-Write-Host "To see individual diffs, run: ./eng/compare-branch.ps1 -RemoteBranch $RemoteBranch -File <file>"
+Write-Host "To see individual diffs, run: $($MyInvocation.MyCommand.Name) -RemoteBranch $RemoteBranch -File <file>"
