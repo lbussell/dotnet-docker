@@ -62,4 +62,4 @@ foreach ($line in $changes) {
 
 Write-Host ""
 Write-Host "Total: $($changes.Count) file(s) changed."
-Write-Host "To see individual diffs, run: git --no-pager diff $RemoteBranch -- <file>"
+Write-Host "To see individual diffs, run: git --no-pager diff --src-prefix '${RemoteBranch}:' --dst-prefix 'working-tree:' $RemoteBranch -- <file>"
