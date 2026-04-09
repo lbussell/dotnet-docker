@@ -8,9 +8,7 @@ ENV `
     # Enable detection of running in a container
     DOTNET_RUNNING_IN_CONTAINER=true `
     # .NET Runtime version
-    DOTNET_VERSION=8.0.25 `
-    # ASP.NET Core version
-    ASPNET_VERSION=8.0.25
+    DOTNET_VERSION=8.0.25
 
 RUN setx /M PATH "%PATH%;C:\Program Files\dotnet"
 
@@ -45,6 +43,9 @@ RUN powershell -Command `
         Remove-Item -Force `
             $dotnet_file, `
             $dotnet_checksums_file
+
+# ASP.NET Core version
+ENV ASPNET_VERSION=8.0.25
 
 # Install ASP.NET Core Runtime
 RUN powershell -Command `
