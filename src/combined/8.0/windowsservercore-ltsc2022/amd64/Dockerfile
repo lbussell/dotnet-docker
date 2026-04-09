@@ -1,7 +1,18 @@
 # escape=`
 
-# Installer image
-FROM mcr.microsoft.com/windows/servercore:ltsc2022-amd64 AS installer
+FROM mcr.microsoft.com/windows/servercore:ltsc2022-amd64
+
+ENV `
+    # Configure web servers to bind to port 8080 when present
+    ASPNETCORE_HTTP_PORTS=8080 `
+    # Enable detection of running in a container
+    DOTNET_RUNNING_IN_CONTAINER=true `
+    # .NET Runtime version
+    DOTNET_VERSION=8.0.25 `
+    # ASP.NET Core version
+    ASPNET_VERSION=8.0.25
+
+RUN setx /M PATH "%PATH%;C:\Program Files\dotnet"
 
 # Retrieve .NET Runtime
 RUN powershell -Command `
@@ -29,8 +40,8 @@ RUN powershell -Command `
             exit 1; `
         }; `
         `
-        mkdir dotnet; `
-        tar --gzip --extract --no-same-owner --file $dotnet_file --directory dotnet; `
+        mkdir 'C:\Program Files\dotnet'; `
+        tar --gzip --extract --no-same-owner --file $dotnet_file --directory 'C:\Program Files\dotnet'; `
         Remove-Item -Force `
             $dotnet_file, `
             $dotnet_checksums_file
@@ -61,25 +72,7 @@ RUN powershell -Command `
             exit 1; `
         }; `
         `
-        tar --gzip --extract --no-same-owner --file $aspnetcore_file --directory dotnet ./shared/Microsoft.AspNetCore.App; `
+        tar --gzip --extract --no-same-owner --file $aspnetcore_file --directory 'C:\Program Files\dotnet' ./shared/Microsoft.AspNetCore.App; `
         Remove-Item -Force `
             $aspnetcore_file, `
             $dotnet_checksums_file
-
-
-# Combined Runtime + ASP.NET Core image
-FROM mcr.microsoft.com/windows/servercore:ltsc2022-amd64
-
-ENV `
-    # Configure web servers to bind to port 8080 when present
-    ASPNETCORE_HTTP_PORTS=8080 `
-    # Enable detection of running in a container
-    DOTNET_RUNNING_IN_CONTAINER=true `
-    # .NET Runtime version
-    DOTNET_VERSION=8.0.25 `
-    # ASP.NET Core version
-    ASPNET_VERSION=8.0.25
-
-RUN setx /M PATH "%PATH%;C:\Program Files\dotnet"
-
-COPY --from=installer ["/dotnet", "/Program Files/dotnet"]
