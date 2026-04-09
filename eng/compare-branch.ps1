@@ -7,18 +7,18 @@
 .PARAMETER RemoteBranch
     The remote branch to compare against (e.g., 'origin/main'). Defaults to the upstream tracking branch.
 
-.PARAMETER DiffFilter
-    Optional diff filter: A=Added, D=Deleted, M=Modified, R=Renamed, etc.
+.PARAMETER File
+    Optional file path. When specified, shows the full diff for that file instead of the file list.
 
 .EXAMPLE
     ./eng/compare-branch.ps1
     ./eng/compare-branch.ps1 -RemoteBranch origin/main
-    ./eng/compare-branch.ps1 -RemoteBranch origin/release/9.0 -DiffFilter M
+    ./eng/compare-branch.ps1 -RemoteBranch upstream/nightly -File eng/compare-branch.ps1
 #>
 
 param(
     [string]$RemoteBranch,
-    [string]$DiffFilter
+    [string]$File
 )
 
 Set-StrictMode -Version Latest
@@ -40,11 +40,13 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
+if ($File) {
+    git --no-pager diff --src-prefix "${RemoteBranch}:" --dst-prefix 'working-tree:' $RemoteBranch -- $File
+    exit $LASTEXITCODE
+}
+
 $mergeBase = git merge-base HEAD $RemoteBranch
 $diffArgs = @('diff', '--name-status', $mergeBase)
-if ($DiffFilter) {
-    $diffArgs += "--diff-filter=$DiffFilter"
-}
 
 $changes = @(git @diffArgs)
 
@@ -62,4 +64,4 @@ foreach ($line in $changes) {
 
 Write-Host ""
 Write-Host "Total: $($changes.Count) file(s) changed."
-Write-Host "To see individual diffs, run: git --no-pager diff --src-prefix '${RemoteBranch}:' --dst-prefix 'working-tree:' $RemoteBranch -- <file>"
+Write-Host "To see individual diffs, run: ./eng/compare-branch.ps1 -RemoteBranch $RemoteBranch -File <file>"
