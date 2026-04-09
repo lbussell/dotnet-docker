@@ -2,7 +2,7 @@
 
 <#
 .SYNOPSIS
-    Compares HEAD to a remote branch and shows which files have changed.
+    Compares the working tree to a remote branch and shows which files have changed.
 
 .PARAMETER RemoteBranch
     The remote branch to compare against (e.g., 'origin/main'). Defaults to the upstream tracking branch.
@@ -41,32 +41,25 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 $mergeBase = git merge-base HEAD $RemoteBranch
-$diffArgs = @('diff', '--name-status', $mergeBase, 'HEAD')
+$diffArgs = @('diff', '--name-status', $mergeBase)
 if ($DiffFilter) {
     $diffArgs += "--diff-filter=$DiffFilter"
 }
 
-$changes = git @diffArgs
+$changes = @(git @diffArgs)
 
 if (-not $changes) {
-    Write-Host "No differences between HEAD and $RemoteBranch."
+    Write-Host "No differences between working tree and $RemoteBranch."
     exit 0
 }
 
-Write-Host "Changed files (HEAD vs $RemoteBranch):" -ForegroundColor Cyan
+Write-Host "Changed files (working tree vs $RemoteBranch):"
 Write-Host ""
 
 foreach ($line in $changes) {
-    $status = $line[0]
-    $color = switch ($status) {
-        'A' { 'Green' }
-        'D' { 'Red' }
-        'M' { 'Yellow' }
-        'R' { 'Magenta' }
-        default { 'White' }
-    }
-    Write-Host $line -ForegroundColor $color
+    Write-Host $line
 }
 
 Write-Host ""
-Write-Host "Total: $($changes.Count) file(s) changed." -ForegroundColor Cyan
+Write-Host "Total: $($changes.Count) file(s) changed."
+Write-Host "To see individual diffs, run: git --no-pager diff $RemoteBranch -- <file>"
